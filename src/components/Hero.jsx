@@ -6,6 +6,9 @@ export default function Hero({ onEnroll, tg }) {
     { value: '5★', label: 'Reyting', emoji: '⭐', color: '#0891b2', bg: '#e0f2fe' },
   ]
 
+  const tgUser = tg?.initDataUnsafe?.user
+  const avatarUrl = tgUser?.photo_url
+
   return (
     <section id="hero" style={{
       minHeight: '100vh', display: 'flex', alignItems: 'center',
@@ -16,6 +19,8 @@ export default function Hero({ onEnroll, tg }) {
           display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60,
           alignItems: 'center'
         }} className="hero-grid">
+
+          {/* Left */}
           <div style={{ animation: 'fadeInUp 0.8s ease forwards' }}>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -36,15 +41,12 @@ export default function Hero({ onEnroll, tg }) {
               Tillarni{' '}
               <span style={{
                 background: 'linear-gradient(135deg, #7c3aed, #ec4899)',
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>O'rganing</span>
-              ,<br />
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
+              }}>O'rganing</span>,<br />
               Kelajakni{' '}
               <span style={{
                 background: 'linear-gradient(135deg, #f97316, #fbbf24)',
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
               }}>Quring!</span>
             </h1>
 
@@ -56,13 +58,14 @@ export default function Hero({ onEnroll, tg }) {
               professional o'qituvchilar bilan o'rganing! 🚀
             </p>
 
-            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+            {/* Buttons - side by side, responsive */}
+            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }} className="hero-btns">
               <button onClick={onEnroll} style={{
                 background: 'linear-gradient(135deg, #0a1628, #0d4f3c)',
-                color: '#fff', border: 'none', padding: '16px 36px',
-                borderRadius: 50, fontSize: 16, fontWeight: 800, cursor: 'pointer',
+                color: '#fff', border: 'none', padding: '15px 32px',
+                borderRadius: 10, fontSize: 16, fontWeight: 800, cursor: 'pointer',
                 boxShadow: '0 8px 30px rgba(10,22,40,0.35)',
-                transition: 'all 0.3s ease', animation: 'pulse-scale 2s infinite'
+                transition: 'all 0.3s ease', whiteSpace: 'nowrap'
               }}
                 onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.boxShadow = '0 14px 40px rgba(10,22,40,0.5)' }}
                 onMouseLeave={e => { e.target.style.transform = 'translateY(0)'; e.target.style.boxShadow = '0 8px 30px rgba(10,22,40,0.35)' }}
@@ -71,25 +74,26 @@ export default function Hero({ onEnroll, tg }) {
               </button>
               <a href="#courses" style={{
                 background: '#fff', border: '2px solid #c4b5fd',
-                color: '#7c3aed', padding: '16px 36px', borderRadius: 50,
+                color: '#7c3aed', padding: '15px 32px', borderRadius: 10,
                 fontSize: 16, fontWeight: 800, textDecoration: 'none',
-                transition: 'all 0.3s ease', boxShadow: '0 4px 15px rgba(124,58,237,0.1)'
+                transition: 'all 0.3s ease', boxShadow: '0 4px 15px rgba(124,58,237,0.1)',
+                whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center'
               }}
                 onMouseEnter={e => { e.target.style.background = '#ede9fe'; e.target.style.borderColor = '#7c3aed' }}
                 onMouseLeave={e => { e.target.style.background = '#fff'; e.target.style.borderColor = '#c4b5fd' }}
               >
-                Kurslarni Ko'rish 📚
+                Kurslar 📚
               </a>
             </div>
 
+            {/* Stats */}
             <div style={{
               display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
               gap: 12, marginTop: 48
             }} className="stats-grid">
               {stats.map((s, i) => (
                 <div key={i} style={{
-                  background: s.bg,
-                  border: `2px solid ${s.color}33`,
+                  background: s.bg, border: `2px solid ${s.color}33`,
                   borderRadius: 20, padding: '16px 10px', textAlign: 'center',
                   transition: 'all 0.3s ease',
                   boxShadow: '0 4px 15px rgba(0,0,0,0.06)',
@@ -106,7 +110,7 @@ export default function Hero({ onEnroll, tg }) {
             </div>
           </div>
 
-          {/* Right */}
+          {/* Right - static card, only badges float */}
           <div style={{
             display: 'flex', justifyContent: 'center', alignItems: 'center',
             position: 'relative', minHeight: 420
@@ -115,27 +119,18 @@ export default function Hero({ onEnroll, tg }) {
               background: '#fff', borderRadius: 32, padding: 32,
               boxShadow: '0 20px 60px rgba(124,58,237,0.15)',
               border: '3px solid #ede9fe',
-              animation: 'float 5s ease-in-out infinite',
               width: 320, position: 'relative', zIndex: 2
             }}>
               <div style={{ textAlign: 'center', marginBottom: 20 }}>
-                {(() => {
-                  const tgUser = tg?.initDataUnsafe?.user
-                  const avatarUrl = tgUser?.photo_url
-                  return avatarUrl ? (
-                    <img
-                      src={avatarUrl}
-                      alt="User avatar"
-                      style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: '3px solid #ede9fe', boxShadow: '0 4px 16px rgba(124,58,237,0.2)' }}
-                    />
-                  ) : (
-                    <img
-                      src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png"
-                      alt="Teacher"
-                      style={{ width: 100, height: 100, objectFit: 'contain' }}
-                    />
-                  )
-                })()}
+                {avatarUrl ? (
+                  <img src={avatarUrl} alt="User avatar" style={{
+                    width: 80, height: 80, borderRadius: '50%', objectFit: 'cover',
+                    border: '3px solid #ede9fe', boxShadow: '0 4px 16px rgba(124,58,237,0.2)'
+                  }} />
+                ) : (
+                  <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="Teacher"
+                    style={{ width: 100, height: 100, objectFit: 'contain' }} />
+                )}
               </div>
               <h3 style={{ fontSize: 18, fontWeight: 900, textAlign: 'center', marginBottom: 16, color: '#1e1b4b' }}>
                 Qaysi tilni o'rganasiz? 🌍
@@ -158,11 +153,16 @@ export default function Hero({ onEnroll, tg }) {
                 >
                   <span style={{ fontSize: 18 }}>{lang.flag}</span>
                   <span style={{ fontSize: 13, color: i === 0 ? lang.color : '#374151' }}>{lang.name}</span>
-                  {i === 0 && <span style={{ marginLeft: 'auto', fontSize: 10, color: lang.color, fontWeight: 800, background: lang.bg, padding: '2px 8px', borderRadius: 20, border: `1px solid ${lang.color}44` }}>MASHHUR</span>}
+                  {i === 0 && (
+                    <span style={{ marginLeft: 'auto', fontSize: 10, color: lang.color, fontWeight: 800, background: lang.bg, padding: '2px 8px', borderRadius: 20, border: `1px solid ${lang.color}44` }}>
+                      MASHHUR
+                    </span>
+                  )}
                 </div>
               ))}
             </div>
 
+            {/* Only badges float */}
             <div style={{
               position: 'absolute', top: 20, right: -10, zIndex: 3,
               background: '#fbbf24', borderRadius: 20, padding: '10px 16px',
@@ -187,6 +187,8 @@ export default function Hero({ onEnroll, tg }) {
         @media (max-width: 768px) {
           .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
           .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .hero-btns { flex-direction: row !important; flex-wrap: wrap !important; }
+          .hero-btns a, .hero-btns button { flex: 1 1 auto; text-align: center; justify-content: center; }
         }
       `}</style>
     </section>

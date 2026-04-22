@@ -1,8 +1,153 @@
 import { useState, useRef } from 'react'
 import { courses } from '../data/courses'
 
-const courseImages = {
-  1: 'https://cdn-icons-png.flaticon.com/512/3898/3898082.png',
+function MapSection() {
+  const [mapHovered, setMapHovered] = useState(false)
+  const [pinBounce, setPinBounce] = useState(false)
+
+  const handleMapClick = () => {
+    window.open('https://yandex.uz/maps/-/CPChy2Zi', '_blank')
+  }
+
+  const handlePinClick = (e) => {
+    e.stopPropagation()
+    setPinBounce(true)
+    setTimeout(() => setPinBounce(false), 600)
+    handleMapClick()
+  }
+
+  return (
+    <div style={{ marginTop: 60 }}>
+      {/* Header */}
+      <div style={{ textAlign: 'center', marginBottom: 32 }}>
+        <div style={{
+          display: 'inline-flex', alignItems: 'center', gap: 8,
+          background: 'linear-gradient(135deg, #fce7f3, #fff7ed)',
+          border: '2px solid #fdba74', borderRadius: 50, padding: '8px 20px', marginBottom: 16
+        }}>
+          <span style={{ fontSize: 18 }}>📍</span>
+          <span style={{ fontSize: 13, color: '#f97316', fontWeight: 800, letterSpacing: 0.5 }}>BIZNING MANZIL</span>
+        </div>
+        <h3 style={{ fontSize: 'clamp(22px, 3vw, 36px)', fontWeight: 900, color: '#1e1b4b', marginBottom: 8 }}>
+          Bizni{' '}
+          <span style={{
+            background: 'linear-gradient(135deg, #f97316, #fbbf24)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
+          }}>Toping!</span>
+        </h3>
+        <p style={{ color: '#6b7280', fontWeight: 600, fontSize: 15 }}>
+          Xaritaga bosing va yo'l topishni boshlang 🗺️
+        </p>
+      </div>
+
+      {/* Map card */}
+      <div
+        onClick={handleMapClick}
+        onMouseEnter={() => setMapHovered(true)}
+        onMouseLeave={() => setMapHovered(false)}
+        style={{
+          borderRadius: 32, overflow: 'hidden', cursor: 'pointer',
+          border: `3px solid ${mapHovered ? '#f97316' : '#fdba74'}`,
+          boxShadow: mapHovered
+            ? '0 24px 60px rgba(249,115,22,0.3), 0 0 0 6px rgba(249,115,22,0.1)'
+            : '0 8px 30px rgba(0,0,0,0.1)',
+          transition: 'all 0.4s cubic-bezier(0.34,1.56,0.64,1)',
+          transform: mapHovered ? 'translateY(-6px) scale(1.01)' : 'translateY(0) scale(1)',
+          position: 'relative',
+          background: 'linear-gradient(135deg, #e0f2fe, #ecfdf5)',
+        }}
+      >
+        {/* Yandex iframe */}
+        <div style={{ position: 'relative', width: '100%', height: 380 }}>
+          <iframe
+            src="https://yandex.uz/map-widget/v1/?ll=71.786419%2C40.391460&z=16&pt=71.786419%2C40.391460%2Cpm2rdm"
+            width="100%"
+            height="380"
+            frameBorder="0"
+            allowFullScreen
+            style={{ display: 'block', borderRadius: 28, filter: mapHovered ? 'brightness(1.05)' : 'brightness(1)', transition: 'filter 0.3s' }}
+            title="Bizning manzil"
+          />
+
+          {/* Overlay click hint */}
+          <div style={{
+            position: 'absolute', inset: 0, borderRadius: 28,
+            background: mapHovered ? 'rgba(249,115,22,0.08)' : 'transparent',
+            transition: 'background 0.3s',
+            pointerEvents: 'none'
+          }} />
+
+          {/* Floating cartoon pin */}
+          <div
+            onClick={handlePinClick}
+            style={{
+              position: 'absolute', top: 16, right: 16, zIndex: 10,
+              background: 'linear-gradient(135deg, #f97316, #fbbf24)',
+              borderRadius: 20, padding: '10px 18px',
+              boxShadow: '0 8px 24px rgba(249,115,22,0.5)',
+              fontWeight: 900, fontSize: 13, color: '#fff',
+              cursor: 'pointer',
+              animation: pinBounce ? 'bounce-in 0.5s ease' : 'float2 3s ease-in-out infinite',
+              display: 'flex', alignItems: 'center', gap: 6,
+              pointerEvents: 'all'
+            }}
+          >
+            📍 Xaritada ko'rish
+          </div>
+
+          {/* Coords badge */}
+          <div style={{
+            position: 'absolute', bottom: 16, left: 16, zIndex: 10,
+            background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(10px)',
+            borderRadius: 14, padding: '8px 14px',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+            fontWeight: 700, fontSize: 12, color: '#374151',
+            display: 'flex', alignItems: 'center', gap: 6,
+            border: '2px solid rgba(249,115,22,0.2)'
+          }}>
+            <span style={{ fontSize: 16 }}>🌐</span>
+            40.391460, 71.786419
+          </div>
+        </div>
+      </div>
+
+      {/* Info cards below map */}
+      <div style={{
+        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+        gap: 16, marginTop: 20
+      }}>
+        {[
+          { icon: '📍', title: 'Manzil', desc: "Farg'ona viloyati", color: '#f97316', bg: '#fff7ed', border: '#fdba74' },
+          { icon: '⏰', title: 'Ish vaqti', desc: 'Du-Sha: 9:00 - 20:00', color: '#7c3aed', bg: '#ede9fe', border: '#c4b5fd' },
+          { icon: '📞', title: 'Telefon', desc: '+998 90 123 45 67', color: '#059669', bg: '#ecfdf5', border: '#6ee7b7' },
+        ].map((item, i) => (
+          <div key={i} style={{
+            background: item.bg, border: `2px solid ${item.border}`,
+            borderRadius: 20, padding: '18px 20px',
+            display: 'flex', alignItems: 'center', gap: 14,
+            transition: 'all 0.3s ease',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.05)'
+          }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `0 10px 25px ${item.color}22` }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.05)' }}
+          >
+            <div style={{
+              width: 48, height: 48, borderRadius: 14,
+              background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 24, boxShadow: `0 4px 12px ${item.color}22`, flexShrink: 0
+            }}>{item.icon}</div>
+            <div>
+              <div style={{ fontSize: 12, color: item.color, fontWeight: 800, marginBottom: 2 }}>{item.title}</div>
+              <div style={{ fontSize: 14, color: '#374151', fontWeight: 700 }}>{item.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const courseImages = {  1: 'https://cdn-icons-png.flaticon.com/512/3898/3898082.png',
   2: 'https://cdn-icons-png.flaticon.com/512/2436/2436874.png',
   3: 'https://cdn-icons-png.flaticon.com/512/4140/4140037.png',
   4: 'https://cdn-icons-png.flaticon.com/512/3209/3209265.png',
@@ -222,6 +367,9 @@ export default function Courses({ onEnroll }) {
           </p>
           <CtaButton onClick={() => onEnroll({ name: 'Individual kurs', id: 0, emoji: '🎯' })} />
         </div>
+
+        {/* Map Section */}
+        <MapSection />
       </div>
     </section>
   )
