@@ -1,5 +1,52 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import careerLogo from '../assets/career.png'
+
+const TYPEWRITER_TEXT = 'Career Center'
+
+function TypewriterText() {
+  const [displayed, setDisplayed] = useState('')
+  const [phase, setPhase] = useState('typing') // 'typing' | 'deleting' | 'pause'
+  const [idx, setIdx] = useState(0)
+
+  useEffect(() => {
+    let timeout
+    if (phase === 'typing') {
+      if (idx < TYPEWRITER_TEXT.length) {
+        timeout = setTimeout(() => {
+          setDisplayed(TYPEWRITER_TEXT.slice(0, idx + 1))
+          setIdx(idx + 1)
+        }, 90)
+      } else {
+        timeout = setTimeout(() => setPhase('deleting'), 1400)
+      }
+    } else if (phase === 'deleting') {
+      if (idx > 0) {
+        timeout = setTimeout(() => {
+          setDisplayed(TYPEWRITER_TEXT.slice(0, idx - 1))
+          setIdx(idx - 1)
+        }, 55)
+      } else {
+        timeout = setTimeout(() => setPhase('typing'), 400)
+      }
+    }
+    return () => clearTimeout(timeout)
+  }, [phase, idx])
+
+  return (
+    <span style={{
+      fontSize: 18, fontWeight: 900, color: '#7c3aed',
+      letterSpacing: -0.3, minWidth: 140, display: 'inline-block'
+    }}>
+      {displayed}
+      <span style={{
+        display: 'inline-block', width: 2, height: '1em',
+        background: '#ec4899', marginLeft: 2, verticalAlign: 'middle',
+        animation: 'blink-cursor 0.7s step-end infinite'
+      }} />
+      <style>{`@keyframes blink-cursor { 0%,100%{opacity:1} 50%{opacity:0} }`}</style>
+    </span>
+  )
+}
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -31,13 +78,14 @@ export default function Navbar() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         height: 70
       }}>
-        {/* Logo */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        {/* Logo + typewriter */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <img
             src={careerLogo}
-            alt="EduCareer Logo"
+            alt="Career Center Logo"
             style={{ height: 58, width: 58, objectFit: 'contain', borderRadius: 14 }}
           />
+          <TypewriterText />
         </div>
 
         {/* Desktop links */}
@@ -95,7 +143,6 @@ export default function Navbar() {
                 boxShadow: `0 4px 16px ${menuColors[i].shadow}`,
                 display: 'flex', alignItems: 'center', gap: 10,
                 transition: 'transform 0.2s, box-shadow 0.2s',
-                transform: 'perspective(400px) rotateX(0deg)',
               }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'perspective(400px) rotateX(-4deg) translateY(-2px)'; e.currentTarget.style.boxShadow = `0 8px 24px ${menuColors[i].shadow}` }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'perspective(400px) rotateX(0deg)'; e.currentTarget.style.boxShadow = `0 4px 16px ${menuColors[i].shadow}` }}

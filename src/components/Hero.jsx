@@ -58,14 +58,14 @@ export default function Hero({ onEnroll, tg }) {
               professional o'qituvchilar bilan o'rganing! 🚀
             </p>
 
-            {/* Buttons - side by side, responsive */}
-            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }} className="hero-btns">
+            {/* Buttons - always side by side */}
+            <div style={{ display: 'flex', flexDirection: 'row', gap: 14, flexWrap: 'nowrap' }}>
               <button onClick={onEnroll} style={{
                 background: 'linear-gradient(135deg, #0a1628, #0d4f3c)',
-                color: '#fff', border: 'none', padding: '15px 32px',
-                borderRadius: 10, fontSize: 16, fontWeight: 800, cursor: 'pointer',
+                color: '#fff', border: 'none', padding: '15px 28px',
+                borderRadius: 10, fontSize: 15, fontWeight: 800, cursor: 'pointer',
                 boxShadow: '0 8px 30px rgba(10,22,40,0.35)',
-                transition: 'all 0.3s ease', whiteSpace: 'nowrap'
+                transition: 'all 0.3s ease', whiteSpace: 'nowrap', flex: '0 0 auto'
               }}
                 onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.boxShadow = '0 14px 40px rgba(10,22,40,0.5)' }}
                 onMouseLeave={e => { e.target.style.transform = 'translateY(0)'; e.target.style.boxShadow = '0 8px 30px rgba(10,22,40,0.35)' }}
@@ -74,10 +74,11 @@ export default function Hero({ onEnroll, tg }) {
               </button>
               <a href="#courses" style={{
                 background: '#fff', border: '2px solid #c4b5fd',
-                color: '#7c3aed', padding: '15px 32px', borderRadius: 10,
-                fontSize: 16, fontWeight: 800, textDecoration: 'none',
+                color: '#7c3aed', padding: '15px 28px', borderRadius: 10,
+                fontSize: 15, fontWeight: 800, textDecoration: 'none',
                 transition: 'all 0.3s ease', boxShadow: '0 4px 15px rgba(124,58,237,0.1)',
-                whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center'
+                whiteSpace: 'nowrap', flex: '0 0 auto',
+                display: 'inline-flex', alignItems: 'center'
               }}
                 onMouseEnter={e => { e.target.style.background = '#ede9fe'; e.target.style.borderColor = '#7c3aed' }}
                 onMouseLeave={e => { e.target.style.background = '#fff'; e.target.style.borderColor = '#c4b5fd' }}
