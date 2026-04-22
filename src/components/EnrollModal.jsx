@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
 const BOT_TOKEN = '8610789641:AAELm5VGy-0QUiO5s_zC5tVTV4b28CsgS0Q'
-const ADMIN_ID = '8046801404'
+const ADMIN_ID = '7790099540'
+
 
 export default function EnrollModal({ course, onClose, tg }) {
   const [form, setForm] = useState({ name: '', phone: '', age: '', level: '', comment: '' })
