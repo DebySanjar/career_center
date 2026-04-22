@@ -1,4 +1,4 @@
-export default function Hero({ onEnroll }) {
+export default function Hero({ onEnroll, tg }) {
   const stats = [
     { value: '500+', label: "O'quvchilar", emoji: '👨‍🎓', color: '#7c3aed', bg: '#ede9fe' },
     { value: '5', label: 'Kurslar', emoji: '📚', color: '#ec4899', bg: '#fce7f3' },
@@ -58,14 +58,14 @@ export default function Hero({ onEnroll }) {
 
             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               <button onClick={onEnroll} style={{
-                background: 'linear-gradient(135deg, #7c3aed, #ec4899)',
+                background: 'linear-gradient(135deg, #0a1628, #0d4f3c)',
                 color: '#fff', border: 'none', padding: '16px 36px',
                 borderRadius: 50, fontSize: 16, fontWeight: 800, cursor: 'pointer',
-                boxShadow: '0 8px 30px rgba(124,58,237,0.4)',
+                boxShadow: '0 8px 30px rgba(10,22,40,0.35)',
                 transition: 'all 0.3s ease', animation: 'pulse-scale 2s infinite'
               }}
-                onMouseEnter={e => e.target.style.transform = 'translateY(-3px)'}
-                onMouseLeave={e => e.target.style.transform = 'translateY(0)'}
+                onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.boxShadow = '0 14px 40px rgba(10,22,40,0.5)' }}
+                onMouseLeave={e => { e.target.style.transform = 'translateY(0)'; e.target.style.boxShadow = '0 8px 30px rgba(10,22,40,0.35)' }}
               >
                 Hozir Boshlash 🚀
               </button>
@@ -119,11 +119,23 @@ export default function Hero({ onEnroll }) {
               width: 320, position: 'relative', zIndex: 2
             }}>
               <div style={{ textAlign: 'center', marginBottom: 20 }}>
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png"
-                  alt="Teacher"
-                  style={{ width: 100, height: 100, objectFit: 'contain' }}
-                />
+                {(() => {
+                  const tgUser = tg?.initDataUnsafe?.user
+                  const avatarUrl = tgUser?.photo_url
+                  return avatarUrl ? (
+                    <img
+                      src={avatarUrl}
+                      alt="User avatar"
+                      style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: '3px solid #ede9fe', boxShadow: '0 4px 16px rgba(124,58,237,0.2)' }}
+                    />
+                  ) : (
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png"
+                      alt="Teacher"
+                      style={{ width: 100, height: 100, objectFit: 'contain' }}
+                    />
+                  )
+                })()}
               </div>
               <h3 style={{ fontSize: 18, fontWeight: 900, textAlign: 'center', marginBottom: 16, color: '#1e1b4b' }}>
                 Qaysi tilni o'rganasiz? 🌍

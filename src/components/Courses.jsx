@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { courses } from '../data/courses'
 
 const courseImages = {
@@ -10,29 +10,61 @@ const courseImages = {
 }
 
 function CourseCard({ course, onEnroll, index }) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 })
   const [hovered, setHovered] = useState(false)
+  const cardRef = useRef(null)
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current
+    if (!card) return
+    const rect = card.getBoundingClientRect()
+    const cx = rect.left + rect.width / 2
+    const cy = rect.top + rect.height / 2
+    const dx = (e.clientX - cx) / (rect.width / 2)
+    const dy = (e.clientY - cy) / (rect.height / 2)
+    setTilt({ x: dy * -12, y: dx * 12 })
+  }
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 })
+    setHovered(false)
+  }
 
   return (
     <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
       onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseLeave={handleMouseLeave}
       style={{
         background: hovered ? course.bgColor : '#fff',
         border: `3px solid ${hovered ? course.color : course.borderColor}`,
         borderRadius: 28, padding: 28, cursor: 'pointer',
-        transition: 'all 0.35s ease',
-        transform: hovered ? 'translateY(-10px) scale(1.02)' : 'translateY(0) scale(1)',
+        transition: hovered ? 'background 0.2s, border 0.2s, box-shadow 0.2s' : 'all 0.5s ease',
+        transform: hovered
+          ? `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-10px) scale(1.02)`
+          : 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)',
         boxShadow: hovered
-          ? `0 20px 50px ${course.color}33`
+          ? `0 24px 60px ${course.color}44, 0 0 0 1px ${course.color}22`
           : '0 4px 20px rgba(0,0,0,0.07)',
         animation: `fadeInUp 0.6s ease ${index * 0.1}s both`,
-        position: 'relative', overflow: 'hidden'
+        position: 'relative', overflow: 'hidden',
+        willChange: 'transform'
       }}
     >
+      {/* Shine overlay */}
+      {hovered && (
+        <div style={{
+          position: 'absolute', inset: 0, borderRadius: 26, pointerEvents: 'none',
+          background: `radial-gradient(circle at ${50 + tilt.y * 3}% ${50 + tilt.x * 3}%, rgba(255,255,255,0.18) 0%, transparent 60%)`,
+          zIndex: 1
+        }} />
+      )}
+
       {/* Badge */}
       {course.badge && (
         <div style={{
-          position: 'absolute', top: 16, right: 16,
+          position: 'absolute', top: 16, right: 16, zIndex: 2,
           background: course.bgColor,
           border: `2px solid ${course.color}44`,
           borderRadius: 20, padding: '4px 12px',
@@ -41,44 +73,35 @@ function CourseCard({ course, onEnroll, index }) {
       )}
 
       {/* Icon + Title */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16, position: 'relative', zIndex: 2 }}>
         <div style={{
           width: 72, height: 72, borderRadius: 20,
           background: course.bgColor,
           border: `2px solid ${course.borderColor}`,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          overflow: 'hidden', flexShrink: 0
+          overflow: 'hidden', flexShrink: 0,
+          transition: 'transform 0.3s',
+          transform: hovered ? 'scale(1.1) rotate(-4deg)' : 'scale(1) rotate(0deg)'
         }}>
-          <img
-            src={courseImages[course.id]}
-            alt={course.title}
-            style={{ width: 50, height: 50, objectFit: 'contain' }}
-          />
+          <img src={courseImages[course.id]} alt={course.title} style={{ width: 50, height: 50, objectFit: 'contain' }} />
         </div>
         <div>
-          <div style={{ fontSize: 12, color: course.color, fontWeight: 800, marginBottom: 2 }}>
-            {course.subtitle}
-          </div>
+          <div style={{ fontSize: 12, color: course.color, fontWeight: 800, marginBottom: 2 }}>{course.subtitle}</div>
           <h3 style={{ fontSize: 19, fontWeight: 900, color: '#1e1b4b' }}>{course.title}</h3>
-          <span style={{
-            fontSize: 12, color: '#fff', fontWeight: 700,
-            background: course.color, borderRadius: 20, padding: '2px 10px'
-          }}>{course.level}</span>
+          <span style={{ fontSize: 12, color: '#fff', fontWeight: 700, background: course.color, borderRadius: 20, padding: '2px 10px' }}>{course.level}</span>
         </div>
       </div>
 
-      <p style={{ fontSize: 14, color: '#6b7280', lineHeight: 1.6, marginBottom: 18, fontWeight: 600 }}>
+      <p style={{ fontSize: 14, color: '#6b7280', lineHeight: 1.6, marginBottom: 18, fontWeight: 600, position: 'relative', zIndex: 2 }}>
         {course.desc}
       </p>
 
       {/* Features */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 20 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 20, position: 'relative', zIndex: 2 }}>
         {course.features.map((f, i) => (
           <span key={i} style={{
-            background: course.bgColor,
-            border: `1px solid ${course.borderColor}`,
-            borderRadius: 20, padding: '4px 12px',
-            fontSize: 12, color: course.color, fontWeight: 700
+            background: course.bgColor, border: `1px solid ${course.borderColor}`,
+            borderRadius: 20, padding: '4px 12px', fontSize: 12, color: course.color, fontWeight: 700
           }}>✓ {f}</span>
         ))}
       </div>
@@ -86,15 +109,14 @@ function CourseCard({ course, onEnroll, index }) {
       {/* Footer */}
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        paddingTop: 16, borderTop: `2px dashed ${course.borderColor}`
+        paddingTop: 16, borderTop: `2px dashed ${course.borderColor}`,
+        position: 'relative', zIndex: 2
       }}>
         <div>
           <div style={{ fontSize: 20, fontWeight: 900, color: course.color }}>
             {course.price} <span style={{ fontSize: 12, fontWeight: 600, color: '#9ca3af' }}>so'm/oy</span>
           </div>
-          <div style={{ fontSize: 12, color: '#9ca3af', marginTop: 2, fontWeight: 600 }}>
-            ⏱ {course.duration}
-          </div>
+          <div style={{ fontSize: 12, color: '#9ca3af', marginTop: 2, fontWeight: 600 }}>⏱ {course.duration}</div>
         </div>
         <button
           onClick={() => onEnroll(course)}
@@ -103,15 +125,50 @@ function CourseCard({ course, onEnroll, index }) {
             color: '#fff', border: 'none', padding: '11px 22px',
             borderRadius: 50, fontSize: 13, fontWeight: 800, cursor: 'pointer',
             transition: 'all 0.2s ease',
-            boxShadow: `0 4px 15px ${course.color}44`
+            boxShadow: `0 4px 15px ${course.color}44`,
+            transform: hovered ? 'scale(1.08)' : 'scale(1)'
           }}
-          onMouseEnter={e => e.target.style.transform = 'scale(1.07)'}
-          onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+          onMouseEnter={e => { e.target.style.transform = 'scale(1.12)'; e.target.style.boxShadow = `0 8px 25px ${course.color}66` }}
+          onMouseLeave={e => { e.target.style.transform = hovered ? 'scale(1.08)' : 'scale(1)'; e.target.style.boxShadow = `0 4px 15px ${course.color}44` }}
         >
           Yozilish →
         </button>
       </div>
     </div>
+  )
+}
+
+function CtaButton({ onClick }) {
+  const [hovered, setHovered] = useState(false)
+  const [clicked, setClicked] = useState(false)
+
+  const handleClick = () => {
+    setClicked(true)
+    setTimeout(() => setClicked(false), 600)
+    onClick()
+  }
+
+  return (
+    <button
+      onClick={handleClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        background: hovered
+          ? 'linear-gradient(135deg, #4c1d95, #7c3aed, #ec4899)'
+          : 'linear-gradient(135deg, #7c3aed, #ec4899)',
+        color: '#fff', border: 'none', padding: hovered ? '16px 44px' : '14px 36px',
+        borderRadius: 50, fontSize: 16, fontWeight: 800, cursor: 'pointer',
+        boxShadow: hovered
+          ? '0 16px 40px rgba(124,58,237,0.6), 0 0 0 6px rgba(124,58,237,0.15)'
+          : '0 8px 25px rgba(124,58,237,0.4)',
+        transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        transform: clicked ? 'scale(0.95)' : hovered ? 'translateY(-4px) scale(1.04)' : 'translateY(0) scale(1)',
+        letterSpacing: hovered ? 0.5 : 0,
+      }}
+    >
+      {clicked ? '✅ Zo\'r tanlov!' : hovered ? '🎯 Hoziroq Bog\'laning!' : 'Bepul Maslahat Olish 🎯'}
+    </button>
   )
 }
 
@@ -128,13 +185,9 @@ export default function Courses({ onEnroll }) {
             borderRadius: 50, padding: '8px 20px', marginBottom: 20
           }}>
             <span style={{ fontSize: 18 }}>📚</span>
-            <span style={{ fontSize: 13, color: '#7c3aed', fontWeight: 800, letterSpacing: 0.5 }}>
-              KURSLARIMIZ
-            </span>
+            <span style={{ fontSize: 13, color: '#7c3aed', fontWeight: 800, letterSpacing: 0.5 }}>KURSLARIMIZ</span>
           </div>
-          <h2 style={{
-            fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 900, marginBottom: 16, color: '#1e1b4b'
-          }}>
+          <h2 style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 900, marginBottom: 16, color: '#1e1b4b' }}>
             Qaysi Tilni{' '}
             <span style={{
               background: 'linear-gradient(135deg, #7c3aed, #ec4899)',
@@ -146,11 +199,7 @@ export default function Courses({ onEnroll }) {
           </p>
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-          gap: 24
-        }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 24 }}>
           {courses.map((course, i) => (
             <CourseCard key={course.id} course={course} onEnroll={onEnroll} index={i} />
           ))}
@@ -171,18 +220,7 @@ export default function Courses({ onEnroll }) {
           <p style={{ color: '#6b7280', marginBottom: 28, fontSize: 16, fontWeight: 600 }}>
             Biz siz uchun maxsus dastur tuzib beramiz 💡
           </p>
-          <button onClick={() => onEnroll({ name: 'Individual kurs', id: 0, emoji: '🎯' })} style={{
-            background: 'linear-gradient(135deg, #7c3aed, #ec4899)',
-            color: '#fff', border: 'none', padding: '14px 36px',
-            borderRadius: 50, fontSize: 16, fontWeight: 800, cursor: 'pointer',
-            boxShadow: '0 8px 25px rgba(124,58,237,0.4)',
-            transition: 'all 0.3s ease'
-          }}
-            onMouseEnter={e => e.target.style.transform = 'translateY(-3px)'}
-            onMouseLeave={e => e.target.style.transform = 'translateY(0)'}
-          >
-            Bepul Maslahat Olish 🎯
-          </button>
+          <CtaButton onClick={() => onEnroll({ name: 'Individual kurs', id: 0, emoji: '🎯' })} />
         </div>
       </div>
     </section>

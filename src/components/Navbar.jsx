@@ -5,20 +5,17 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const navLinks = [
-
     { label: 'Bosh sahifa', href: '#hero' },
     { label: 'Kurslar', href: '#courses' },
     { label: 'Haqimizda', href: '#about' },
     { label: 'Aloqa', href: '#footer' },
   ]
 
-  
   return (
     <nav style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
       padding: '0 24px',
-      background: 'rgba(255,255,255,0.92)',
-      backdropFilter: 'blur(20px)',
+      background: 'linear-gradient(160deg, #ede9fe 0%, #fce7f3 40%, #dbeafe 100%)',
       borderBottom: '2px solid rgba(124,58,237,0.12)',
       boxShadow: '0 4px 24px rgba(124,58,237,0.08)',
     }}>
@@ -28,11 +25,11 @@ export default function Navbar() {
         height: 70
       }}>
         {/* Logo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <img
             src={careerLogo}
             alt="EduCareer Logo"
-            style={{ height: 44, width: 44, objectFit: 'contain', borderRadius: 12 }}
+            style={{ height: 54, width: 54, objectFit: 'contain', borderRadius: 14 }}
           />
         </div>
 
@@ -62,9 +59,9 @@ export default function Navbar() {
 
         {/* Mobile burger */}
         <button onClick={() => setMenuOpen(!menuOpen)} style={{
-          display: 'none', background: 'rgba(124,58,237,0.1)', border: 'none',
-          cursor: 'pointer', padding: '8px 12px', color: '#7c3aed', fontSize: 22,
-          borderRadius: 10, fontWeight: 700
+          display: 'none', background: 'rgba(124,58,237,0.15)', border: 'none',
+          cursor: 'pointer', padding: '10px 14px', color: '#7c3aed', fontSize: 26,
+          borderRadius: 12, fontWeight: 700, lineHeight: 1
         }} className="burger-btn" aria-label="Menu">
           {menuOpen ? '✕' : '☰'}
         </button>
@@ -73,7 +70,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div style={{
-          background: 'rgba(255,255,255,0.98)', backdropFilter: 'blur(20px)',
+          background: 'linear-gradient(160deg, #ede9fe 0%, #fce7f3 100%)',
           borderTop: '2px solid rgba(124,58,237,0.1)',
           padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 12
         }}>

@@ -15,25 +15,29 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <img src={careerLogo} alt="Logo" style={{ height: 44, width: 44, objectFit: 'contain', borderRadius: 12, background: '#fff', padding: 4 }} />
+              <img src={careerLogo} alt="Logo" style={{ height: 48, width: 48, objectFit: 'contain', borderRadius: 12, background: '#fff', padding: 4 }} />
               <span style={{ fontSize: 22, fontWeight: 900, color: '#fff' }}>
-                Edu<span style={{ color: '#fbbf24' }}>Career</span>
+                Career <span style={{ color: '#fbbf24' }}>Center</span>
               </span>
             </div>
             <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, lineHeight: 1.7, fontWeight: 600 }}>
               Professional til o'quv markazi. Kelajagingizni til bilan quring. 🚀
             </p>
             <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
-              {['✈️', '📸', '▶️'].map((icon, i) => (
-                <a key={i} href="#" style={{
-                  width: 40, height: 40, borderRadius: 12,
+              {[
+                { icon: '✈️', label: 'Telegram', href: '#' },
+                { icon: '📸', label: 'Instagram', href: '#' },
+                { icon: '▶️', label: 'YouTube', href: '#' },
+              ].map((s, i) => (
+                <a key={i} href={s.href} aria-label={s.label} style={{
+                  width: 42, height: 42, borderRadius: 12,
                   background: 'rgba(255,255,255,0.15)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 18, textDecoration: 'none', transition: 'all 0.2s'
+                  fontSize: 20, textDecoration: 'none', transition: 'all 0.2s'
                 }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.3)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.15)'}
-                >{icon}</a>
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.3)'; e.currentTarget.style.transform = 'translateY(-3px)' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; e.currentTarget.style.transform = 'translateY(0)' }}
+                >{s.icon}</a>
               ))}
             </div>
           </div>
@@ -51,25 +55,6 @@ export default function Footer() {
               >→ {item}</a>
             ))}
           </div>
-
-          {/* Contact */}
-          <div>
-            <h4 style={{ fontSize: 15, fontWeight: 800, marginBottom: 16, color: '#fbbf24' }}>Aloqa</h4>
-            {[
-              { icon: '📱', text: '+998 90 123 45 67' },
-              { icon: '✉️', text: 'info@educareer.uz' },
-              { icon: '📍', text: "Toshkent, O'zbekiston" },
-              { icon: '⏰', text: 'Du-Sha: 9:00 - 20:00' },
-            ].map((item, i) => (
-              <div key={i} style={{
-                display: 'flex', alignItems: 'center', gap: 10,
-                color: 'rgba(255,255,255,0.75)', fontSize: 14, marginBottom: 10, fontWeight: 600
-              }}>
-                <span>{item.icon}</span>
-                <span>{item.text}</span>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div style={{
@@ -77,7 +62,7 @@ export default function Footer() {
           paddingTop: 24, textAlign: 'center',
           color: 'rgba(255,255,255,0.55)', fontSize: 13, fontWeight: 600
         }}>
-          © 2025 EduCareer. Barcha huquqlar himoyalangan. 💜
+          © 2025 Career Center. Barcha huquqlar himoyalangan. 💜
         </div>
       </div>
     </footer>

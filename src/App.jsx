@@ -23,7 +23,7 @@ export default function App() {
     <div style={{ position: 'relative', minHeight: '100vh' }}>
       <Background />
       <Navbar />
-      <Hero onEnroll={() => setEnrollCourse({ name: 'Umumiy' })} />
+      <Hero onEnroll={() => setEnrollCourse({ name: 'Umumiy' })} tg={tg} />
       <Courses onEnroll={(course) => setEnrollCourse(course)} />
       <Footer />
       {enrollCourse && (
