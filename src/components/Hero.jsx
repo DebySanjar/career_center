@@ -1,9 +1,9 @@
 export default function Hero({ onEnroll }) {
   const stats = [
-    { value: '500+', label: "O'quvchilar" },
-    { value: '12+', label: 'Kurslar' },
-    { value: '95%', label: 'Muvaffaqiyat' },
-    { value: '5★', label: 'Reyting' },
+    { value: '500+', label: "O'quvchilar", emoji: '👨‍🎓', color: '#7c3aed', bg: '#ede9fe' },
+    { value: '5', label: 'Kurslar', emoji: '📚', color: '#ec4899', bg: '#fce7f3' },
+    { value: '95%', label: 'Muvaffaqiyat', emoji: '🏆', color: '#f97316', bg: '#fff7ed' },
+    { value: '5★', label: 'Reyting', emoji: '⭐', color: '#0891b2', bg: '#e0f2fe' },
   ]
 
   return (
@@ -16,114 +16,157 @@ export default function Hero({ onEnroll }) {
           display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60,
           alignItems: 'center'
         }} className="hero-grid">
-
-          {/* Left */}
           <div style={{ animation: 'fadeInUp 0.8s ease forwards' }}>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'rgba(0,229,160,0.1)', border: '1px solid rgba(0,229,160,0.3)',
-              borderRadius: 50, padding: '6px 16px', marginBottom: 24
+              background: 'linear-gradient(135deg, #ede9fe, #fce7f3)',
+              border: '2px solid #c4b5fd',
+              borderRadius: 50, padding: '8px 20px', marginBottom: 28
             }}>
-              <span style={{ fontSize: 12, color: '#00e5a0', fontWeight: 600, letterSpacing: 1 }}>
-                🎓 TIL O'QUV MARKAZI
+              <span style={{ fontSize: 18 }}>🎓</span>
+              <span style={{ fontSize: 13, color: '#7c3aed', fontWeight: 800, letterSpacing: 0.5 }}>
+                TIL O'QUV MARKAZI
               </span>
             </div>
 
             <h1 style={{
-              fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 800,
-              lineHeight: 1.15, marginBottom: 24,
-              background: 'linear-gradient(135deg, #ffffff 0%, #00e5a0 50%, #ff4081 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
+              fontSize: 'clamp(36px, 5vw, 62px)', fontWeight: 900,
+              lineHeight: 1.15, marginBottom: 24, color: '#1e1b4b'
             }}>
-              Kelajagingizni<br />Til Bilan<br />Quring
+              Tillarni{' '}
+              <span style={{
+                background: 'linear-gradient(135deg, #7c3aed, #ec4899)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>O'rganing</span>
+              ,<br />
+              Kelajakni{' '}
+              <span style={{
+                background: 'linear-gradient(135deg, #f97316, #fbbf24)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>Quring!</span>
             </h1>
 
             <p style={{
-              fontSize: 18, color: 'rgba(255,255,255,0.7)',
-              lineHeight: 1.7, marginBottom: 36, maxWidth: 480
+              fontSize: 18, color: '#6b7280',
+              lineHeight: 1.7, marginBottom: 36, maxWidth: 480, fontWeight: 600
             }}>
-              Ingliz, Rus, Xitoy va boshqa tillarda professional kurslar.
-              Tajribali o'qituvchilar bilan tez va samarali o'rganing.
+              IELTS, General English, Kids English, Turk tili va Arab tili kurslarida
+              professional o'qituvchilar bilan o'rganing! 🚀
             </p>
 
             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               <button onClick={onEnroll} style={{
-                background: 'linear-gradient(135deg, #00e5a0, #0f6b50)',
-                color: '#0a1628', border: 'none', padding: '16px 36px',
-                borderRadius: 50, fontSize: 16, fontWeight: 700, cursor: 'pointer',
-                boxShadow: '0 8px 30px rgba(0,229,160,0.4)',
-                transition: 'all 0.3s ease', animation: 'pulse-glow 2s infinite'
+                background: 'linear-gradient(135deg, #7c3aed, #ec4899)',
+                color: '#fff', border: 'none', padding: '16px 36px',
+                borderRadius: 50, fontSize: 16, fontWeight: 800, cursor: 'pointer',
+                boxShadow: '0 8px 30px rgba(124,58,237,0.4)',
+                transition: 'all 0.3s ease', animation: 'pulse-scale 2s infinite'
               }}
                 onMouseEnter={e => e.target.style.transform = 'translateY(-3px)'}
                 onMouseLeave={e => e.target.style.transform = 'translateY(0)'}
               >
-                Hozir Boshlash →
+                Hozir Boshlash 🚀
               </button>
               <a href="#courses" style={{
-                background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.2)',
-                color: '#fff', padding: '16px 36px', borderRadius: 50,
-                fontSize: 16, fontWeight: 600, textDecoration: 'none',
-                backdropFilter: 'blur(10px)', transition: 'all 0.3s ease'
+                background: '#fff', border: '2px solid #c4b5fd',
+                color: '#7c3aed', padding: '16px 36px', borderRadius: 50,
+                fontSize: 16, fontWeight: 800, textDecoration: 'none',
+                transition: 'all 0.3s ease', boxShadow: '0 4px 15px rgba(124,58,237,0.1)'
               }}
-                onMouseEnter={e => { e.target.style.background = 'rgba(255,255,255,0.12)'; e.target.style.borderColor = '#00e5a0' }}
-                onMouseLeave={e => { e.target.style.background = 'rgba(255,255,255,0.07)'; e.target.style.borderColor = 'rgba(255,255,255,0.2)' }}
+                onMouseEnter={e => { e.target.style.background = '#ede9fe'; e.target.style.borderColor = '#7c3aed' }}
+                onMouseLeave={e => { e.target.style.background = '#fff'; e.target.style.borderColor = '#c4b5fd' }}
               >
-                Kurslarni Ko'rish
+                Kurslarni Ko'rish 📚
               </a>
             </div>
 
-            {/* Stats */}
             <div style={{
               display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: 16, marginTop: 48
+              gap: 12, marginTop: 48
             }} className="stats-grid">
               {stats.map((s, i) => (
                 <div key={i} style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  borderRadius: 16, padding: '16px 12px', textAlign: 'center',
-                  backdropFilter: 'blur(10px)',
-                  transition: 'all 0.3s ease'
+                  background: s.bg,
+                  border: `2px solid ${s.color}33`,
+                  borderRadius: 20, padding: '16px 10px', textAlign: 'center',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 15px rgba(0,0,0,0.06)',
+                  animation: `fadeInUp 0.6s ease ${i * 0.1 + 0.4}s both`
                 }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#00e5a0'; e.currentTarget.style.background = 'rgba(0,229,160,0.08)' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)' }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `0 8px 25px ${s.color}33` }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.06)' }}
                 >
-                  <div style={{ fontSize: 24, fontWeight: 800, color: '#00e5a0' }}>{s.value}</div>
-                  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 4 }}>{s.label}</div>
+                  <div style={{ fontSize: 22 }}>{s.emoji}</div>
+                  <div style={{ fontSize: 22, fontWeight: 900, color: s.color, marginTop: 4 }}>{s.value}</div>
+                  <div style={{ fontSize: 11, color: '#6b7280', marginTop: 2, fontWeight: 700 }}>{s.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right - floating card */}
-          <div style={{ display: 'flex', justifyContent: 'center', animation: 'float 4s ease-in-out infinite' }}>
+          {/* Right */}
+          <div style={{
+            display: 'flex', justifyContent: 'center', alignItems: 'center',
+            position: 'relative', minHeight: 420
+          }}>
             <div style={{
-              width: 340, background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.15)',
-              borderRadius: 28, padding: 32, backdropFilter: 'blur(20px)',
-              boxShadow: '0 25px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)'
+              background: '#fff', borderRadius: 32, padding: 32,
+              boxShadow: '0 20px 60px rgba(124,58,237,0.15)',
+              border: '3px solid #ede9fe',
+              animation: 'float 5s ease-in-out infinite',
+              width: 320, position: 'relative', zIndex: 2
             }}>
-              <div style={{ fontSize: 48, marginBottom: 16, textAlign: 'center' }}>🌍</div>
-              <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'center', marginBottom: 20 }}>
-                Qaysi tilni o'rganmoqchisiz?
+              <div style={{ textAlign: 'center', marginBottom: 20 }}>
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png"
+                  alt="Teacher"
+                  style={{ width: 100, height: 100, objectFit: 'contain' }}
+                />
+              </div>
+              <h3 style={{ fontSize: 18, fontWeight: 900, textAlign: 'center', marginBottom: 16, color: '#1e1b4b' }}>
+                Qaysi tilni o'rganasiz? 🌍
               </h3>
-              {['🇬🇧 Ingliz tili', '🇷🇺 Rus tili', '🇨🇳 Xitoy tili', '🇩🇪 Nemis tili', '🇫🇷 Fransuz tili'].map((lang, i) => (
+              {[
+                { flag: '🇬🇧', name: 'IELTS & General English', color: '#7c3aed', bg: '#ede9fe' },
+                { flag: '🧒', name: 'Kids English', color: '#f97316', bg: '#fff7ed' },
+                { flag: '🇹🇷', name: 'Turk tili (TYS, CEFR)', color: '#dc2626', bg: '#fef2f2' },
+                { flag: '🕌', name: 'Arab tili (At-Tanal)', color: '#059669', bg: '#ecfdf5' },
+              ].map((lang, i) => (
                 <div key={i} style={{
-                  display: 'flex', alignItems: 'center', gap: 12,
-                  padding: '12px 16px', borderRadius: 12, marginBottom: 8,
-                  background: i === 0 ? 'rgba(0,229,160,0.15)' : 'rgba(255,255,255,0.04)',
-                  border: `1px solid ${i === 0 ? 'rgba(0,229,160,0.4)' : 'rgba(255,255,255,0.08)'}`,
-                  cursor: 'pointer', transition: 'all 0.2s'
+                  display: 'flex', alignItems: 'center', gap: 10,
+                  padding: '10px 14px', borderRadius: 14, marginBottom: 8,
+                  background: i === 0 ? lang.bg : '#f9fafb',
+                  border: `2px solid ${i === 0 ? lang.color + '44' : '#e5e7eb'}`,
+                  cursor: 'pointer', transition: 'all 0.2s', fontWeight: 700
                 }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,229,160,0.12)'; e.currentTarget.style.borderColor = 'rgba(0,229,160,0.3)' }}
-                  onMouseLeave={e => { e.currentTarget.style.background = i === 0 ? 'rgba(0,229,160,0.15)' : 'rgba(255,255,255,0.04)'; e.currentTarget.style.borderColor = i === 0 ? 'rgba(0,229,160,0.4)' : 'rgba(255,255,255,0.08)' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = lang.bg; e.currentTarget.style.borderColor = lang.color + '44' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = i === 0 ? lang.bg : '#f9fafb'; e.currentTarget.style.borderColor = i === 0 ? lang.color + '44' : '#e5e7eb' }}
                 >
-                  <span style={{ fontSize: 15, color: i === 0 ? '#00e5a0' : 'rgba(255,255,255,0.8)' }}>{lang}</span>
-                  {i === 0 && <span style={{ marginLeft: 'auto', fontSize: 11, color: '#00e5a0', fontWeight: 600 }}>MASHHUR</span>}
+                  <span style={{ fontSize: 18 }}>{lang.flag}</span>
+                  <span style={{ fontSize: 13, color: i === 0 ? lang.color : '#374151' }}>{lang.name}</span>
+                  {i === 0 && <span style={{ marginLeft: 'auto', fontSize: 10, color: lang.color, fontWeight: 800, background: lang.bg, padding: '2px 8px', borderRadius: 20, border: `1px solid ${lang.color}44` }}>MASHHUR</span>}
                 </div>
               ))}
             </div>
+
+            <div style={{
+              position: 'absolute', top: 20, right: -10, zIndex: 3,
+              background: '#fbbf24', borderRadius: 20, padding: '10px 16px',
+              boxShadow: '0 8px 20px rgba(251,191,36,0.4)',
+              animation: 'float2 4s ease-in-out infinite',
+              fontWeight: 900, fontSize: 13, color: '#fff'
+            }}>⭐ 5.0 Reyting</div>
+
+            <div style={{
+              position: 'absolute', bottom: 30, left: -20, zIndex: 3,
+              background: 'linear-gradient(135deg, #7c3aed, #ec4899)',
+              borderRadius: 20, padding: '10px 16px',
+              boxShadow: '0 8px 20px rgba(124,58,237,0.4)',
+              animation: 'float 6s ease-in-out infinite 1s',
+              fontWeight: 900, fontSize: 13, color: '#fff'
+            }}>🎓 500+ O'quvchi</div>
           </div>
         </div>
       </div>
