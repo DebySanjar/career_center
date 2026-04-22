@@ -135,16 +135,16 @@ function CourseCard({ course, onEnroll, index }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={handleMouseLeave}
       style={{
-        background: hovered ? course.bgColor : '#fff',
-        border: `3px solid ${hovered ? course.color : course.borderColor}`,
+        background: course.bgColor,
+        border: '2.5px solid #1a1a2e',
         borderRadius: 28, padding: 28, cursor: 'pointer',
-        transition: hovered ? 'background 0.2s, border 0.2s, box-shadow 0.2s' : 'all 0.5s ease',
+        transition: hovered ? 'box-shadow 0.2s, background 0.2s' : 'all 0.5s ease',
         transform: hovered
-          ? `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-10px) scale(1.02)`
+          ? `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-8px) scale(1.02)`
           : 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)',
         boxShadow: hovered
-          ? `0 24px 60px ${course.color}44, 0 0 0 1px ${course.color}22`
-          : '0 4px 20px rgba(0,0,0,0.07)',
+          ? `6px 10px 0px #1a1a2e, 0 20px 40px ${course.shadow}`
+          : `4px 6px 0px #1a1a2e, 0 4px 20px ${course.shadow}`,
         animation: `fadeInUp 0.6s ease ${index * 0.1}s both`,
         position: 'relative', overflow: 'hidden',
         willChange: 'transform'
@@ -154,7 +154,7 @@ function CourseCard({ course, onEnroll, index }) {
       {hovered && (
         <div style={{
           position: 'absolute', inset: 0, borderRadius: 26, pointerEvents: 'none',
-          background: `radial-gradient(circle at ${50 + tilt.y * 3}% ${50 + tilt.x * 3}%, rgba(255,255,255,0.18) 0%, transparent 60%)`,
+          background: `radial-gradient(circle at ${50 + tilt.y * 3}% ${50 + tilt.x * 3}%, rgba(255,255,255,0.22) 0%, transparent 60%)`,
           zIndex: 1
         }} />
       )}
@@ -163,34 +163,40 @@ function CourseCard({ course, onEnroll, index }) {
       {course.badge && (
         <div style={{
           position: 'absolute', top: 16, right: 16, zIndex: 2,
-          background: course.bgColor,
-          border: `2px solid ${course.color}44`,
-          borderRadius: 20, padding: '4px 12px',
-          fontSize: 11, fontWeight: 800, color: course.color
+          background: course.color,
+          border: '2px solid #1a1a2e',
+          borderRadius: 12, padding: '5px 12px',
+          fontSize: 11, fontWeight: 800, color: '#fff',
+          boxShadow: '2px 3px 0px #1a1a2e'
         }}>{course.badge}</div>
       )}
 
       {/* Icon + Title */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16, position: 'relative', zIndex: 2 }}>
         <div style={{
-          width: 72, height: 72, borderRadius: 20,
-          background: course.bgColor,
-          border: `2px solid ${course.borderColor}`,
+          width: 68, height: 68, borderRadius: 18,
+          background: 'rgba(255,255,255,0.7)',
+          border: '2px solid #1a1a2e',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           overflow: 'hidden', flexShrink: 0,
+          boxShadow: '3px 3px 0px #1a1a2e',
           transition: 'transform 0.3s',
           transform: hovered ? 'scale(1.1) rotate(-4deg)' : 'scale(1) rotate(0deg)'
         }}>
-          <img src={courseImages[course.id]} alt={course.title} style={{ width: 50, height: 50, objectFit: 'contain' }} />
+          <img src={courseImages[course.id]} alt={course.title} style={{ width: 48, height: 48, objectFit: 'contain' }} />
         </div>
         <div>
           <div style={{ fontSize: 12, color: course.color, fontWeight: 800, marginBottom: 2 }}>{course.subtitle}</div>
-          <h3 style={{ fontSize: 19, fontWeight: 900, color: '#1e1b4b' }}>{course.title}</h3>
-          <span style={{ fontSize: 12, color: '#fff', fontWeight: 700, background: course.color, borderRadius: 20, padding: '2px 10px' }}>{course.level}</span>
+          <h3 style={{ fontSize: 19, fontWeight: 900, color: '#1a1a2e' }}>{course.title}</h3>
+          <span style={{
+            fontSize: 12, color: '#fff', fontWeight: 700,
+            background: course.color, borderRadius: 8, padding: '2px 10px',
+            border: '1.5px solid #1a1a2e', display: 'inline-block', marginTop: 2
+          }}>{course.level}</span>
         </div>
       </div>
 
-      <p style={{ fontSize: 14, color: '#6b7280', lineHeight: 1.6, marginBottom: 18, fontWeight: 600, position: 'relative', zIndex: 2 }}>
+      <p style={{ fontSize: 14, color: '#374151', lineHeight: 1.6, marginBottom: 18, fontWeight: 600, position: 'relative', zIndex: 2 }}>
         {course.desc}
       </p>
 
@@ -198,8 +204,11 @@ function CourseCard({ course, onEnroll, index }) {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 20, position: 'relative', zIndex: 2 }}>
         {course.features.map((f, i) => (
           <span key={i} style={{
-            background: course.bgColor, border: `1px solid ${course.borderColor}`,
-            borderRadius: 20, padding: '4px 12px', fontSize: 12, color: course.color, fontWeight: 700
+            background: 'rgba(255,255,255,0.65)',
+            border: '1.5px solid #1a1a2e',
+            borderRadius: 10, padding: '4px 12px',
+            fontSize: 12, color: '#1a1a2e', fontWeight: 700,
+            boxShadow: '1px 2px 0px #1a1a2e'
           }}>✓ {f}</span>
         ))}
       </div>
@@ -207,27 +216,23 @@ function CourseCard({ course, onEnroll, index }) {
       {/* Footer */}
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        paddingTop: 16, borderTop: `2px dashed ${course.borderColor}`,
+        paddingTop: 16, borderTop: '2px dashed rgba(26,26,46,0.3)',
         position: 'relative', zIndex: 2
       }}>
-        <div>
-          <div style={{ fontSize: 20, fontWeight: 900, color: course.color }}>
-            {course.price} <span style={{ fontSize: 12, fontWeight: 600, color: '#9ca3af' }}>so'm/oy</span>
-          </div>
-          <div style={{ fontSize: 12, color: '#9ca3af', marginTop: 2, fontWeight: 600 }}>⏱ {course.duration}</div>
+        <div style={{ fontSize: 20, fontWeight: 900, color: '#1a1a2e' }}>
+          {course.price} <span style={{ fontSize: 12, fontWeight: 600, color: '#6b7280' }}>so'm/oy</span>
         </div>
         <button
           onClick={() => onEnroll(course)}
           style={{
-            background: `linear-gradient(135deg, ${course.color}, ${course.color}cc)`,
-            color: '#fff', border: 'none', padding: '11px 22px',
-            borderRadius: 50, fontSize: 13, fontWeight: 800, cursor: 'pointer',
-            transition: 'all 0.2s ease',
-            boxShadow: `0 4px 15px ${course.color}44`,
-            transform: hovered ? 'scale(1.08)' : 'scale(1)'
+            background: course.color,
+            color: '#fff', border: '2px solid #1a1a2e', padding: '10px 22px',
+            borderRadius: 12, fontSize: 13, fontWeight: 800, cursor: 'pointer',
+            transition: 'all 0.15s ease',
+            boxShadow: '3px 3px 0px #1a1a2e'
           }}
-          onMouseEnter={e => { e.target.style.transform = 'scale(1.12)'; e.target.style.boxShadow = `0 8px 25px ${course.color}66` }}
-          onMouseLeave={e => { e.target.style.transform = hovered ? 'scale(1.08)' : 'scale(1)'; e.target.style.boxShadow = `0 4px 15px ${course.color}44` }}
+          onMouseEnter={e => { e.currentTarget.style.transform = 'translate(-2px,-2px)'; e.currentTarget.style.boxShadow = '5px 5px 0px #1a1a2e' }}
+          onMouseLeave={e => { e.currentTarget.style.transform = 'translate(0,0)'; e.currentTarget.style.boxShadow = '3px 3px 0px #1a1a2e' }}
         >
           Yozilish →
         </button>

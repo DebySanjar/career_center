@@ -38,12 +38,6 @@ function TypewriterText() {
       letterSpacing: -0.3, minWidth: 140, display: 'inline-block'
     }}>
       {displayed}
-      <span style={{
-        display: 'inline-block', width: 2, height: '1em',
-        background: '#ec4899', marginLeft: 2, verticalAlign: 'middle',
-        animation: 'blink-cursor 0.7s step-end infinite'
-      }} />
-      <style>{`@keyframes blink-cursor { 0%,100%{opacity:1} 50%{opacity:0} }`}</style>
     </span>
   )
 }
@@ -117,8 +111,8 @@ export default function Navbar() {
           display: 'none',
           background: menuOpen ? 'rgba(124,58,237,0.2)' : 'rgba(124,58,237,0.12)',
           border: '2px solid rgba(124,58,237,0.25)',
-          cursor: 'pointer', padding: '10px 16px', color: '#7c3aed', fontSize: 28,
-          borderRadius: 14, fontWeight: 700, lineHeight: 1,
+          cursor: 'pointer', padding: '7px 11px', color: '#7c3aed', fontSize: 20,
+          borderRadius: 10, fontWeight: 700, lineHeight: 1,
           transition: 'all 0.2s'
         }} className="burger-btn" aria-label="Menu">
           {menuOpen ? '✕' : '☰'}
@@ -137,17 +131,17 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
               style={{
                 color: '#fff', textDecoration: 'none',
-                fontSize: 16, fontWeight: 800, padding: '14px 20px',
-                borderRadius: 16,
+                fontSize: 15, fontWeight: 800, padding: '11px 16px',
+                borderRadius: 12,
                 background: menuColors[i].bg,
-                boxShadow: `0 4px 16px ${menuColors[i].shadow}`,
-                display: 'flex', alignItems: 'center', gap: 10,
+                boxShadow: `0 3px 12px ${menuColors[i].shadow}`,
+                display: 'flex', alignItems: 'center', gap: 8,
                 transition: 'transform 0.2s, box-shadow 0.2s',
               }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'perspective(400px) rotateX(-4deg) translateY(-2px)'; e.currentTarget.style.boxShadow = `0 8px 24px ${menuColors[i].shadow}` }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'perspective(400px) rotateX(0deg)'; e.currentTarget.style.boxShadow = `0 4px 16px ${menuColors[i].shadow}` }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'perspective(400px) rotateX(-4deg) translateY(-2px)'; e.currentTarget.style.boxShadow = `0 8px 20px ${menuColors[i].shadow}` }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'perspective(400px) rotateX(0deg)'; e.currentTarget.style.boxShadow = `0 3px 12px ${menuColors[i].shadow}` }}
             >
-              <span style={{ fontSize: 20 }}>{['🏠', '📚', 'ℹ️', '📞'][i]}</span>
+              <span style={{ fontSize: 17 }}>{['🏠', '📚', 'ℹ️', '📞'][i]}</span>
               {link.label}
             </a>
           ))}
