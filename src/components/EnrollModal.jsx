@@ -122,65 +122,108 @@ function Input3D({ label, name, value, onChange, placeholder, type, icon }) {
   )
 }
 
-function Select3D({ label, name, value, onChange, icon }) {
-  const [focused, setFocused] = useState(false)
-  const [hovered, setHovered] = useState(false)
-  const active = focused || hovered
+function LevelDropdown({ value, onChange }) {
+  const [open, setOpen] = useState(false)
+
+  const levels = [
+    "Boshlang'ich (A1)",
+    "Elementar (A2)",
+    "O'rta (B1)",
+    "O'rta-yuqori (B2)",
+    "Ilg'or (C1)",
+    "Bilmayman",
+  ]
+
+  const handleSelect = (level) => {
+    onChange({ target: { name: 'level', value: level } })
+    setOpen(false)
+  }
 
   return (
     <div style={{ position: 'relative', marginBottom: 36 }}>
+      {/* Label tag */}
       <div style={{
         position: 'absolute', top: -14, left: 16, zIndex: 4,
-        background: ACCENT, color: BLACK,
-        fontWeight: 900, padding: '4px 12px', fontSize: 12,
+        background: ACCENT, color: BLACK, fontWeight: 900,
+        padding: '4px 12px', fontSize: 12,
         border: `2px solid ${BLACK}`, letterSpacing: 1, userSelect: 'none'
-      }}>{label}</div>
+      }}>TIL DARAJASI</div>
 
-      <div
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+      {/* Trigger button */}
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
         style={{
-          position: 'relative', background: '#f0f0f0',
-          padding: '14px 14px', display: 'flex', alignItems: 'center', gap: 12,
+          width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          background: open ? '#7c3aed' : '#7c3aed',
+          color: '#fff', fontWeight: 800, fontSize: 16,
+          padding: '14px 20px', borderRadius: 10, cursor: 'pointer',
           border: `3px solid ${BLACK}`,
-          transition: 'all 350ms cubic-bezier(0.23, 1, 0.32, 1)',
-          transformStyle: 'preserve-3d',
-          transform: active ? 'rotateX(3deg) rotateY(0.5deg) scale(1.03)' : 'rotateX(8deg) rotateY(-6deg)',
-          perspective: '1000px',
-          boxShadow: active ? `18px 18px 0 -3px ${ACCENT}, 18px 18px 0 0 ${BLACK}` : `8px 8px 0 ${BLACK}`,
+          boxShadow: open ? `4px 4px 0 ${BLACK}` : `6px 6px 0 ${BLACK}`,
+          transition: 'all 0.3s',
+          transform: open ? 'translate(-2px,-2px)' : 'translate(0,0)',
+          position: 'relative', zIndex: 3,
         }}
       >
-        <button type="button" style={{
-          cursor: 'default', border: `2.5px solid ${BLACK}`, background: ACCENT,
-          display: 'flex', justifyContent: 'center', alignItems: 'center',
-          padding: '8px', transform: 'translateZ(20px)',
-          position: 'relative', zIndex: 3, flexShrink: 0,
-          boxShadow: active ? `4px 4px 0 ${BLACK}` : `2px 2px 0 ${BLACK}`,
-          transition: 'all 350ms cubic-bezier(0.23, 1, 0.32, 1)',
-        }}>{icon}</button>
+        <span>{value || 'DARAJANI TANLANG'}</span>
+        {/* Hamburger / X bars */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4, width: 22, height: 18, justifyContent: 'center' }}>
+          <span style={{
+            display: 'block', height: 3, borderRadius: 50, background: '#fff',
+            transition: 'all 0.4s',
+            transformOrigin: 'top right',
+            transform: open ? 'translateY(-25%) rotate(-45deg)' : 'none',
+          }} />
+          <span style={{
+            display: 'block', height: 3, borderRadius: 50, background: '#fff',
+            transition: 'all 0.4s',
+            transform: open ? 'translateX(-50%)' : 'none',
+            opacity: open ? 0 : 1,
+          }} />
+          <span style={{
+            display: 'block', height: 3, borderRadius: 50, background: '#fff',
+            transition: 'all 0.4s',
+            transformOrigin: 'bottom right',
+            transform: open ? 'translateY(25%) rotate(45deg)' : 'none',
+          }} />
+        </div>
+      </button>
 
-        <select
-          name={name} value={value} onChange={onChange}
-          onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
-          style={{
-            width: '100%', outline: 'none', border: `2.5px solid ${BLACK}`,
-            padding: '12px 14px', fontSize: 15, background: '#fff', color: value ? BLACK : '#666',
-            transform: active ? 'translateZ(20px) translateX(-3px) translateY(-3px)' : 'translateZ(10px)',
-            transition: 'all 350ms cubic-bezier(0.23, 1, 0.32, 1)',
-            position: 'relative', zIndex: 3,
-            fontFamily: "'Nunito', Arial, sans-serif", fontWeight: 700,
-            cursor: 'pointer',
-            boxShadow: active ? `4px 4px 0 ${BLACK}` : 'none',
-          }}
-        >
-          <option value="">DARAJANI TANLANG</option>
-          <option value="Boshlang'ich (A1)">BOSHLANG'ICH (A1)</option>
-          <option value="Elementar (A2)">ELEMENTAR (A2)</option>
-          <option value="O'rta (B1)">O'RTA (B1)</option>
-          <option value="O'rta-yuqori (B2)">O'RTA-YUQORI (B2)</option>
-          <option value="Ilg'or (C1)">ILG'OR (C1)</option>
-          <option value="Bilmayman">BILMAYMAN</option>
-        </select>
+      {/* Dropdown menu */}
+      <div style={{
+        background: '#fff', borderRadius: 10,
+        border: `3px solid ${BLACK}`,
+        position: 'absolute', width: '100%', left: 0, top: 'calc(100% + 8px)',
+        overflow: 'hidden', zIndex: 20,
+        boxShadow: `6px 6px 0 ${BLACK}`,
+        clipPath: open ? 'inset(0% 0% 0% 0% round 10px)' : 'inset(10% 50% 90% 50% round 10px)',
+        transition: 'clip-path 0.4s cubic-bezier(0.23,1,0.32,1)',
+        pointerEvents: open ? 'all' : 'none',
+      }}>
+        {levels.map((level, i) => (
+          <div
+            key={level}
+            onClick={() => handleSelect(level)}
+            style={{
+              padding: '12px 18px', cursor: 'pointer',
+              color: value === level ? '#7c3aed' : '#7c3aed',
+              fontWeight: 800, fontSize: 15,
+              background: value === level ? '#ede9fe' : '#fff',
+              borderBottom: i < levels.length - 1 ? '1px solid rgba(0,0,0,0.12)' : 'none',
+              transition: 'background 0.2s',
+              transform: open ? 'translateY(0)' : 'translateY(30px)',
+              opacity: open ? 1 : 0,
+              transitionDelay: open ? `${0.4 + i * 0.07}s` : '0s',
+              transitionProperty: 'transform, opacity, background',
+              transitionDuration: '0.35s',
+            }}
+            onMouseEnter={e => { if (value !== level) e.currentTarget.style.background = '#f3f4f6' }}
+            onMouseLeave={e => { if (value !== level) e.currentTarget.style.background = '#fff' }}
+          >
+            {value === level && <span style={{ marginRight: 8 }}>✓</span>}
+            {level}
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -305,17 +348,7 @@ export default function EnrollModal({ course, onClose, tg }) {
                 />
               ))}
 
-              <Select3D
-                label="TIL DARAJASI"
-                name="level"
-                value={form.level}
-                onChange={handleChange}
-                icon={
-                  <svg viewBox="0 0 24 24" fill={BLACK} width="22" height="22">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
-                  </svg>
-                }
-              />
+              <LevelDropdown value={form.level} onChange={handleChange} />
 
               {/* Comment */}
               <div style={{ position: 'relative', marginBottom: 36 }}>
