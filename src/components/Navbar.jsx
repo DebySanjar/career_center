@@ -5,13 +5,14 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const navLinks = [
-    
+
     { label: 'Bosh sahifa', href: '#hero' },
     { label: 'Kurslar', href: '#courses' },
     { label: 'Haqimizda', href: '#about' },
     { label: 'Aloqa', href: '#footer' },
   ]
 
+  
   return (
     <nav style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
