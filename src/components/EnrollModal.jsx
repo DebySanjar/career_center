@@ -8,7 +8,7 @@ const BLACK = '#000'
 
 const fields = [
   {
-    name: 'name', label: 'ISM FAMILIYA', placeholder: 'MASALAN: ALISHER KARIMOV',
+    name: 'name', label: 'ISM FAMILIYA', placeholder: 'MASALAN: Sanjar...',
     type: 'text', icon: (
       <svg viewBox="0 0 24 24" fill={BLACK} width="22" height="22">
         <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
@@ -24,7 +24,7 @@ const fields = [
     )
   },
   {
-    name: 'age', label: 'YOSH', placeholder: 'MASALAN: 22',
+    name: 'age', label: 'YOSH', placeholder: 'MASALAN: 17',
     type: 'number', icon: (
       <svg viewBox="0 0 24 24" fill={BLACK} width="22" height="22">
         <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" />
@@ -130,7 +130,6 @@ function LevelDropdown({ value, onChange }) {
     "Elementar (A2)",
     "O'rta (B1)",
     "O'rta-yuqori (B2)",
-    "Ilg'or (C1)",
     "Bilmayman",
   ]
 
@@ -140,13 +139,13 @@ function LevelDropdown({ value, onChange }) {
   }
 
   return (
-    <div style={{ position: 'relative', marginBottom: 36 }}>
+    <div style={{ position: 'relative', marginBottom: 46 }}>
       {/* Label tag */}
       <div style={{
         position: 'absolute', top: -14, left: 16, zIndex: 4,
         background: ACCENT, color: BLACK, fontWeight: 900,
         padding: '4px 12px', fontSize: 12,
-        border: `2px solid ${BLACK}`, letterSpacing: 1, userSelect: 'none'
+        border: `3px solid ${BLACK}`, letterSpacing: 1, userSelect: 'none'
       }}>TIL DARAJASI</div>
 
       {/* Trigger button */}
@@ -157,7 +156,7 @@ function LevelDropdown({ value, onChange }) {
           width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           background: open ? '#7c3aed' : '#7c3aed',
           color: '#fff', fontWeight: 800, fontSize: 16,
-          padding: '14px 20px', borderRadius: 10, cursor: 'pointer',
+          padding: '14px 20px', borderRadius: 20, cursor: 'pointer',
           border: `3px solid ${BLACK}`,
           boxShadow: open ? `4px 4px 0 ${BLACK}` : `6px 6px 0 ${BLACK}`,
           transition: 'all 0.3s',
@@ -165,7 +164,7 @@ function LevelDropdown({ value, onChange }) {
           position: 'relative', zIndex: 3,
         }}
       >
-        <span>{value || 'DARAJANI TANLANG'}</span>
+        <span>{value || 'DARAJANGIZNI TANLANG'}</span>
         {/* Hamburger / X bars */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4, width: 22, height: 18, justifyContent: 'center' }}>
           <span style={{
