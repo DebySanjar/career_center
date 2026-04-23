@@ -308,22 +308,83 @@ export default function Courses({ onEnroll }) {
           ))}
         </div>
 
-        {/* CTA */}
-        <div style={{
-          marginTop: 60, textAlign: 'center',
-          background: 'linear-gradient(135deg, #ede9fe, #fce7f3)',
-          border: '3px solid #c4b5fd',
-          borderRadius: 32, padding: '48px 32px',
-          position: 'relative', overflow: 'hidden'
-        }}>
-          <div style={{ fontSize: 48, marginBottom: 12 }}>🤔</div>
-          <h3 style={{ fontSize: 28, fontWeight: 900, marginBottom: 12, color: '#1e1b4b' }}>
-            O'zingizga mos kurs topa olmadingizmi?
-          </h3>
-          <p style={{ color: '#6b7280', marginBottom: 28, fontSize: 16, fontWeight: 600 }}>
-            Biz siz uchun maxsus dastur tuzib beramiz 💡
-          </p>
-          <CtaButton onClick={() => onEnroll({ name: 'Individual kurs', id: 0, emoji: '🎯' })} />
+        {/* CTA - creative section */}
+        <div style={{ marginTop: 60, position: 'relative' }}>
+          {/* Big emoji floating */}
+          <div style={{
+            textAlign: 'center', marginBottom: 32, position: 'relative'
+          }}>
+            <div style={{
+              fontSize: 72, lineHeight: 1,
+              animation: 'float 4s ease-in-out infinite',
+              display: 'inline-block'
+            }}>🤔</div>
+          </div>
+
+          <div style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0,
+            position: 'relative'
+          }}>
+            {/* Title with big gradient text */}
+            <h3 style={{
+              fontSize: 'clamp(26px, 4vw, 44px)', fontWeight: 900,
+              color: '#1e1b4b', textAlign: 'center', marginBottom: 16, lineHeight: 1.2
+            }}>
+              O'zingizga mos kurs{' '}
+              <span style={{
+                background: 'linear-gradient(135deg, #7c3aed, #ec4899)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                display: 'inline-block'
+              }}>topa olmadingizmi?</span>
+            </h3>
+
+            <p style={{
+              color: '#6b7280', fontSize: 17, fontWeight: 600,
+              textAlign: 'center', marginBottom: 40, maxWidth: 480
+            }}>
+              Biz siz uchun <span style={{ color: '#7c3aed', fontWeight: 900 }}>maxsus dastur</span> tuzib beramiz.
+              Bepul maslahat oling! 💡
+            </p>
+
+            {/* 3 feature pills */}
+            <div style={{
+              display: 'flex', gap: 12, flexWrap: 'wrap',
+              justifyContent: 'center', marginBottom: 40
+            }}>
+              {[
+                { icon: '⚡', text: 'Tez javob', color: '#f97316', bg: '#fff7ed', border: '#fdba74' },
+                { icon: '🎯', text: 'Individual yondashuv', color: '#7c3aed', bg: '#ede9fe', border: '#c4b5fd' },
+                { icon: '🆓', text: 'Bepul maslahat', color: '#059669', bg: '#ecfdf5', border: '#6ee7b7' },
+              ].map((pill, i) => (
+                <div key={i} style={{
+                  display: 'flex', alignItems: 'center', gap: 8,
+                  background: pill.bg, border: `2px solid ${pill.border}`,
+                  borderRadius: 50, padding: '10px 20px',
+                  fontWeight: 800, fontSize: 14, color: pill.color,
+                  boxShadow: `3px 3px 0 ${pill.border}`,
+                  transition: 'all 0.15s',
+                  animation: `fadeInUp 0.5s ease ${i * 0.1 + 0.2}s both`
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translate(-2px,-2px)'; e.currentTarget.style.boxShadow = `5px 5px 0 ${pill.border}` }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translate(0,0)'; e.currentTarget.style.boxShadow = `3px 3px 0 ${pill.border}` }}
+                >
+                  <span style={{ fontSize: 18 }}>{pill.icon}</span>
+                  {pill.text}
+                </div>
+              ))}
+            </div>
+
+            <CtaButton onClick={() => onEnroll({ name: 'Individual kurs', id: 0, emoji: '🎯' })} />
+
+            {/* Decorative dashed line */}
+            <div style={{
+              marginTop: 32, display: 'flex', alignItems: 'center', gap: 12, color: '#9ca3af', fontSize: 13, fontWeight: 600
+            }}>
+              <div style={{ height: 1, width: 60, borderTop: '2px dashed #d1d5db' }} />
+              yoki +998 99 300 31 28 ga qo'ng'iroq qiling
+              <div style={{ height: 1, width: 60, borderTop: '2px dashed #d1d5db' }} />
+            </div>
+          </div>
         </div>
 
         {/* Map Section */}

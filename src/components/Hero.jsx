@@ -22,18 +22,6 @@ export default function Hero({ onEnroll, tg }) {
 
           {/* Left */}
           <div style={{ animation: 'fadeInUp 0.8s ease forwards' }}>
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'linear-gradient(135deg, #ede9fe, #fce7f3)',
-              border: '2px solid #c4b5fd',
-              borderRadius: 50, padding: '8px 20px', marginBottom: 28
-            }}>
-              <span style={{ fontSize: 18 }}>🎓</span>
-              <span style={{ fontSize: 13, color: '#7c3aed', fontWeight: 800, letterSpacing: 0.5 }}>
-                TIL O'QUV MARKAZI
-              </span>
-            </div>
-
             <h1 style={{
               fontSize: 'clamp(36px, 5vw, 62px)', fontWeight: 900,
               lineHeight: 1.15, marginBottom: 24, color: '#1e1b4b'

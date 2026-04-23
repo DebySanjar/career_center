@@ -52,13 +52,6 @@ export default function Navbar() {
     { label: 'Aloqa', href: '#footer' },
   ]
 
-  const menuColors = [
-    { bg: 'linear-gradient(135deg, #7c3aed, #a78bfa)', shadow: 'rgba(124,58,237,0.4)' },
-    { bg: 'linear-gradient(135deg, #0891b2, #67e8f9)', shadow: 'rgba(8,145,178,0.4)' },
-    { bg: 'linear-gradient(135deg, #f97316, #fbbf24)', shadow: 'rgba(249,115,22,0.4)' },
-    { bg: 'linear-gradient(135deg, #059669, #6ee7b7)', shadow: 'rgba(5,150,105,0.4)' },
-  ]
-
   return (
     <nav style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
@@ -130,29 +123,44 @@ export default function Navbar() {
             <a key={link.href} href={link.href}
               onClick={() => setMenuOpen(false)}
               style={{
-                color: '#fff', textDecoration: 'none',
-                fontSize: 15, fontWeight: 800, padding: '11px 16px',
-                borderRadius: 12,
-                background: menuColors[i].bg,
-                boxShadow: `0 3px 12px ${menuColors[i].shadow}`,
-                display: 'flex', alignItems: 'center', gap: 8,
-                transition: 'transform 0.2s, box-shadow 0.2s',
+                color: '#1e1b4b', textDecoration: 'none',
+                fontSize: 15, fontWeight: 800, padding: '13px 18px',
+                borderRadius: 14,
+                background: '#fff',
+                border: '2px solid rgba(124,58,237,0.15)',
+                boxShadow: '4px 4px 0px rgba(124,58,237,0.2)',
+                display: 'flex', alignItems: 'center', gap: 10,
+                transition: 'all 0.15s ease',
               }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'perspective(400px) rotateX(-4deg) translateY(-2px)'; e.currentTarget.style.boxShadow = `0 8px 20px ${menuColors[i].shadow}` }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'perspective(400px) rotateX(0deg)'; e.currentTarget.style.boxShadow = `0 3px 12px ${menuColors[i].shadow}` }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translate(-2px,-2px)'
+                e.currentTarget.style.boxShadow = '6px 6px 0px rgba(124,58,237,0.3)'
+                e.currentTarget.style.borderColor = 'rgba(124,58,237,0.4)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translate(0,0)'
+                e.currentTarget.style.boxShadow = '4px 4px 0px rgba(124,58,237,0.2)'
+                e.currentTarget.style.borderColor = 'rgba(124,58,237,0.15)'
+              }}
             >
-              <span style={{ fontSize: 17 }}>{['🏠', '📚', 'ℹ️', '📞'][i]}</span>
-              {link.label}
+              <span style={{ fontSize: 18, width: 28, textAlign: 'center' }}>{['🏠', '📚', 'ℹ️', '📞'][i]}</span>
+              <span>{link.label}</span>
+              <span style={{ marginLeft: 'auto', color: '#c4b5fd', fontSize: 16 }}>›</span>
             </a>
           ))}
           <a href="#courses" onClick={() => setMenuOpen(false)} style={{
             background: 'linear-gradient(135deg, #0a1628, #0d4f3c)',
-            color: '#fff', padding: '15px 22px', borderRadius: 10,
+            color: '#fff', padding: '14px 22px', borderRadius: 14,
             textDecoration: 'none', fontWeight: 800, textAlign: 'center',
-            marginTop: 4, fontSize: 16,
-            boxShadow: '0 6px 20px rgba(10,22,40,0.4)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8
-          }}>
+            marginTop: 4, fontSize: 15,
+            border: '2px solid #000',
+            boxShadow: '4px 4px 0px #000',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+            transition: 'all 0.15s ease',
+          }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translate(-2px,-2px)'; e.currentTarget.style.boxShadow = '6px 6px 0px #000' }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'translate(0,0)'; e.currentTarget.style.boxShadow = '4px 4px 0px #000' }}
+          >
             <span>✨</span> Ro'yxatdan o'tish
           </a>
         </div>
