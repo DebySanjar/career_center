@@ -77,81 +77,62 @@ export default function SplashScreen({ onDone }) {
         </defs>
       </svg>
 
-      <div className="sp-loader">
-        {/* C - dash, gradient b */}
-        <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={64} width={64}>
-          <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-b)" pathLength={360}
-            d="M 52,16 A 24,24 0 1 0 52,48" />
-        </svg>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+        {/* CAREER */}
+        <div className="sp-loader">
+          {/* C */}
+          <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={52} width={52}>
+            <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-b)" pathLength={360} d="M 52,16 A 24,24 0 1 0 52,48" />
+          </svg>
+          {/* A */}
+          <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={52} width={52}>
+            <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-d)" pathLength={360} d="M 8,60 L 32,4 L 56,60 M 16,40 H 48" />
+          </svg>
+          {/* R */}
+          <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={52} width={52}>
+            <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-b)" pathLength={360} d="M 12,60 V 4 H 36 C 48,4 52,12 52,22 C 52,32 46,38 36,38 H 12 M 36,38 L 54,60" />
+          </svg>
+          {/* E */}
+          <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={52} width={52}>
+            <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-c)" pathLength={360} d="M 52,4 H 12 V 60 H 52 M 12,32 H 46" />
+          </svg>
+          {/* E */}
+          <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={52} width={52}>
+            <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-d)" pathLength={360} d="M 52,4 H 12 V 60 H 52 M 12,32 H 46" />
+          </svg>
+          {/* R */}
+          <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={52} width={52}>
+            <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-b)" pathLength={360} d="M 12,60 V 4 H 36 C 48,4 52,12 52,22 C 52,32 46,38 36,38 H 12 M 36,38 L 54,60" />
+          </svg>
+        </div>
 
-        {/* A - dash, gradient d */}
-        <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={64} width={64}>
-          <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-d)" pathLength={360}
-            d="M 8,60 L 32,4 L 56,60 M 16,40 H 48" />
-        </svg>
-
-        {/* R - dash, gradient b */}
-        <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={64} width={64}>
-          <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-b)" pathLength={360}
-            d="M 12,60 V 4 H 36 C 48,4 52,12 52,22 C 52,32 46,38 36,38 H 12 M 36,38 L 54,60" />
-        </svg>
-
-        {/* E - dash, gradient c */}
-        <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={64} width={64}>
-          <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-c)" pathLength={360}
-            d="M 52,4 H 12 V 60 H 52 M 12,32 H 46" />
-        </svg>
-
-        {/* E - spin, gradient c */}
-        <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={64} width={64}>
-          <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-d)" pathLength={360}
-            d="M 52,4 H 12 V 60 H 52 M 12,32 H 46" />
-        </svg>
-
-        {/* R - dash, gradient d */}
-        <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={64} width={64}>
-          <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-b)" pathLength={360}
-            d="M 12,60 V 4 H 36 C 48,4 52,12 52,22 C 52,32 46,38 36,38 H 12 M 36,38 L 54,60" />
-        </svg>
-
-        {/* space */}
-        <div style={{ width: 20 }} />
-
-        {/* C - dash, gradient b */}
-        <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={64} width={64}>
-          <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-c)" pathLength={360}
-            d="M 52,16 A 24,24 0 1 0 52,48" />
-        </svg>
-
-        {/* E - dash, gradient d */}
-        <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={64} width={64}>
-          <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-d)" pathLength={360}
-            d="M 52,4 H 12 V 60 H 52 M 12,32 H 46" />
-        </svg>
-
-        {/* N - spin, gradient c */}
-        <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={64} width={64}>
-          <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-b)" pathLength={360}
-            d="M 10,60 V 4 L 54,60 V 4" />
-        </svg>
-
-        {/* T - dash, gradient b */}
-        <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={64} width={64}>
-          <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-c)" pathLength={360}
-            d="M 8,4 H 56 M 32,4 V 60" />
-        </svg>
-
-        {/* E - dash, gradient d */}
-        <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={64} width={64}>
-          <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-d)" pathLength={360}
-            d="M 52,4 H 12 V 60 H 52 M 12,32 H 46" />
-        </svg>
-
-        {/* R - dash, gradient b */}
-        <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={64} width={64}>
-          <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-b)" pathLength={360}
-            d="M 12,60 V 4 H 36 C 48,4 52,12 52,22 C 52,32 46,38 36,38 H 12 M 36,38 L 54,60" />
-        </svg>
+        {/* CENTER */}
+        <div className="sp-loader">
+          {/* C */}
+          <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={52} width={52}>
+            <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-c)" pathLength={360} d="M 52,16 A 24,24 0 1 0 52,48" />
+          </svg>
+          {/* E */}
+          <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={52} width={52}>
+            <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-d)" pathLength={360} d="M 52,4 H 12 V 60 H 52 M 12,32 H 46" />
+          </svg>
+          {/* N */}
+          <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={52} width={52}>
+            <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-b)" pathLength={360} d="M 10,60 V 4 L 54,60 V 4" />
+          </svg>
+          {/* T */}
+          <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={52} width={52}>
+            <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-c)" pathLength={360} d="M 8,4 H 56 M 32,4 V 60" />
+          </svg>
+          {/* E */}
+          <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={52} width={52}>
+            <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-d)" pathLength={360} d="M 52,4 H 12 V 60 H 52 M 12,32 H 46" />
+          </svg>
+          {/* R */}
+          <svg className="sp-inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height={52} width={52}>
+            <path className="sp-dash" strokeLinejoin="round" strokeLinecap="round" strokeWidth={8} stroke="url(#sp-b)" pathLength={360} d="M 12,60 V 4 H 36 C 48,4 52,12 52,22 C 52,32 46,38 36,38 H 12 M 36,38 L 54,60" />
+          </svg>
+        </div>
       </div>
     </div>
   )
