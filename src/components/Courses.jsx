@@ -17,8 +17,8 @@ function MapSection() {
   }
 
   return (
-    <div style={{ marginTop: 60 }}>
-      <div style={{ textAlign: 'center', marginBottom: 32 }}>
+    <div style={{ marginTop: 24 }}>
+      <div style={{ textAlign: 'center', marginBottom: 16 }}>
         <h3 style={{ fontSize: 'clamp(22px, 3vw, 36px)', fontWeight: 900, color: '#1e1b4b', marginBottom: 8 }}>
           Bizni{' '}
           <span style={{
