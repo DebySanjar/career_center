@@ -49,7 +49,7 @@ export default function Hero({ onEnroll, tg }) {
             {/* Buttons - always side by side */}
             <div style={{ display: 'flex', flexDirection: 'row', gap: 14, flexWrap: 'nowrap' }}>
               <button onClick={onEnroll} style={{
-                background: 'linear-gradient(135deg, #0a1628, #0d4f3c)',
+                background: 'linear-gradient(135deg, #b02f9aff, #e0ab18ff)',
                 color: '#fff', border: 'none', padding: '15px 28px',
                 borderRadius: 10, fontSize: 15, fontWeight: 800, cursor: 'pointer',
                 boxShadow: '0 8px 30px rgba(10,22,40,0.35)',
