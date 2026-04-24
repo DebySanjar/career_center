@@ -148,21 +148,6 @@ export default function Navbar() {
               <span style={{ marginLeft: 'auto', color: '#c4b5fd', fontSize: 16 }}>›</span>
             </a>
           ))}
-          <a href="#courses" onClick={() => setMenuOpen(false)} style={{
-            background: 'linear-gradient(135deg, #0a1628, #0d4f3c)',
-            color: '#fff', padding: '14px 22px', borderRadius: 14,
-            textDecoration: 'none', fontWeight: 800, textAlign: 'center',
-            marginTop: 4, fontSize: 15,
-            border: '2px solid #000',
-            boxShadow: '4px 4px 0px #000',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-            transition: 'all 0.15s ease',
-          }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translate(-2px,-2px)'; e.currentTarget.style.boxShadow = '6px 6px 0px #000' }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'translate(0,0)'; e.currentTarget.style.boxShadow = '4px 4px 0px #000' }}
-          >
-            <span>✨</span> Ro'yxatdan o'tish
-          </a>
         </div>
       )}
 
