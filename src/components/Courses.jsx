@@ -243,7 +243,7 @@ function CourseCard({ course, onEnroll, index }) {
 
 export default function Courses({ onEnroll }) {
   return (
-    <section id="courses" style={{ padding: '60px 24px 16px', position: 'relative', zIndex: 1 }}>
+    <section id="courses" style={{ padding: '30px 24px 16px', position: 'relative', zIndex: 1 }}>
       <style>{`
         @media (max-width: 768px) {
           .courses-section { padding: 40px 16px 24px !important; }
@@ -252,15 +252,16 @@ export default function Courses({ onEnroll }) {
       `}</style>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
-        <div style={{ textAlign: 'center', marginBottom: 60 }}>
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'linear-gradient(135deg, #ede9fe, #fce7f3)',
-            border: '2px solid #c4b5fd',
-            borderRadius: 50, padding: '8px 20px', marginBottom: 20
+            background: 'linear-gradient(135deg, #7c3aed, #ec4899)',
+            borderRadius: 50, padding: '10px 24px', marginBottom: 16,
+            boxShadow: '0 4px 15px rgba(124,58,237,0.35)',
+            cursor: 'default'
           }}>
             <span style={{ fontSize: 18 }}>📚</span>
-            <span style={{ fontSize: 13, color: '#7c3aed', fontWeight: 800, letterSpacing: 0.5 }}>KURSLARIMIZ</span>
+            <span style={{ fontSize: 14, color: '#fff', fontWeight: 800, letterSpacing: 0.5 }}>KURSLARIMIZ</span>
           </div>
           <h2 style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 900, marginBottom: 16, color: '#1e1b4b' }}>
             Qaysi Tilni{' '}
