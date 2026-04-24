@@ -6,6 +6,8 @@ import EnrollModal from './components/EnrollModal'
 import Footer from './components/Footer'
 import Background from './components/Background'
 
+import Quotes from './components/Quotes'
+
 export default function App() {
   const [enrollCourse, setEnrollCourse] = useState(null)
   const [tg, setTg] = useState(null)
@@ -25,6 +27,7 @@ export default function App() {
       <Navbar />
       <Hero onEnroll={() => setEnrollCourse({ name: 'Umumiy' })} tg={tg} />
       <Courses onEnroll={(course) => setEnrollCourse(course)} />
+      <Quotes />
       <Footer />
       {enrollCourse && (
         <EnrollModal

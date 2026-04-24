@@ -241,40 +241,6 @@ function CourseCard({ course, onEnroll, index }) {
   )
 }
 
-function CtaButton({ onClick }) {
-  const [hovered, setHovered] = useState(false)
-  const [clicked, setClicked] = useState(false)
-
-  const handleClick = () => {
-    setClicked(true)
-    setTimeout(() => setClicked(false), 600)
-    onClick()
-  }
-
-  return (
-    <button
-      onClick={handleClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        background: hovered
-          ? 'linear-gradient(135deg, #4c1d95, #7c3aed, #ec4899)'
-          : 'linear-gradient(135deg, #7c3aed, #ec4899)',
-        color: '#fff', border: 'none', padding: hovered ? '16px 44px' : '14px 36px',
-        borderRadius: 50, fontSize: 16, fontWeight: 800, cursor: 'pointer',
-        boxShadow: hovered
-          ? '0 16px 40px rgba(124,58,237,0.6), 0 0 0 6px rgba(124,58,237,0.15)'
-          : '0 8px 25px rgba(124,58,237,0.4)',
-        transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        transform: clicked ? 'scale(0.95)' : hovered ? 'translateY(-4px) scale(1.04)' : 'translateY(0) scale(1)',
-        letterSpacing: hovered ? 0.5 : 0,
-      }}
-    >
-      {clicked ? '✅ Zo\'r tanlov!' : hovered ? '🎯 Hoziroq Bog\'laning!' : 'Bepul Maslahat Olish 🎯'}
-    </button>
-  )
-}
-
 export default function Courses({ onEnroll }) {
   return (
     <section id="courses" style={{ padding: '80px 24px', position: 'relative', zIndex: 1 }}>
@@ -306,85 +272,6 @@ export default function Courses({ onEnroll }) {
           {courses.map((course, i) => (
             <CourseCard key={course.id} course={course} onEnroll={onEnroll} index={i} />
           ))}
-        </div>
-
-        {/* CTA - creative section */}
-        <div style={{ marginTop: 60, position: 'relative' }}>
-          {/* Big emoji floating */}
-          <div style={{
-            textAlign: 'center', marginBottom: 32, position: 'relative'
-          }}>
-            <div style={{
-              fontSize: 72, lineHeight: 1,
-              animation: 'float 4s ease-in-out infinite',
-              display: 'inline-block'
-            }}>🤔</div>
-          </div>
-
-          <div style={{
-            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0,
-            position: 'relative'
-          }}>
-            {/* Title with big gradient text */}
-            <h3 style={{
-              fontSize: 'clamp(26px, 4vw, 44px)', fontWeight: 900,
-              color: '#1e1b4b', textAlign: 'center', marginBottom: 16, lineHeight: 1.2
-            }}>
-              O'zingizga mos kurs{' '}
-              <span style={{
-                background: 'linear-gradient(135deg, #7c3aed, #ec4899)',
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-                display: 'inline-block'
-              }}>topa olmadingizmi?</span>
-            </h3>
-
-            <p style={{
-              color: '#6b7280', fontSize: 17, fontWeight: 600,
-              textAlign: 'center', marginBottom: 40, maxWidth: 480
-            }}>
-              Biz siz uchun <span style={{ color: '#7c3aed', fontWeight: 900 }}>maxsus dastur</span> tuzib beramiz.
-              Bepul maslahat oling! 💡
-            </p>
-
-            {/* 3 feature pills */}
-            <div style={{
-              display: 'flex', gap: 12, flexWrap: 'wrap',
-              justifyContent: 'center', marginBottom: 40
-            }}>
-              {[
-                { icon: '⚡', text: 'Tez javob', color: '#f97316', bg: '#fff7ed', border: '#fdba74' },
-                { icon: '🎯', text: 'Individual yondashuv', color: '#7c3aed', bg: '#ede9fe', border: '#c4b5fd' },
-                { icon: '🆓', text: 'Bepul maslahat', color: '#059669', bg: '#ecfdf5', border: '#6ee7b7' },
-              ].map((pill, i) => (
-                <div key={i} style={{
-                  display: 'flex', alignItems: 'center', gap: 8,
-                  background: pill.bg, border: `2px solid ${pill.border}`,
-                  borderRadius: 50, padding: '10px 20px',
-                  fontWeight: 800, fontSize: 14, color: pill.color,
-                  boxShadow: `3px 3px 0 ${pill.border}`,
-                  transition: 'all 0.15s',
-                  animation: `fadeInUp 0.5s ease ${i * 0.1 + 0.2}s both`
-                }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = 'translate(-2px,-2px)'; e.currentTarget.style.boxShadow = `5px 5px 0 ${pill.border}` }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = 'translate(0,0)'; e.currentTarget.style.boxShadow = `3px 3px 0 ${pill.border}` }}
-                >
-                  <span style={{ fontSize: 18 }}>{pill.icon}</span>
-                  {pill.text}
-                </div>
-              ))}
-            </div>
-
-            <CtaButton onClick={() => onEnroll({ name: 'Individual kurs', id: 0, emoji: '🎯' })} />
-
-            {/* Decorative dashed line */}
-            <div style={{
-              marginTop: 32, display: 'flex', alignItems: 'center', gap: 12, color: '#9ca3af', fontSize: 13, fontWeight: 600
-            }}>
-              <div style={{ height: 1, width: 60, borderTop: '2px dashed #d1d5db' }} />
-              yoki +998 99 300 31 28 ga qo'ng'iroq qiling
-              <div style={{ height: 1, width: 60, borderTop: '2px dashed #d1d5db' }} />
-            </div>
-          </div>
         </div>
 
         {/* Map Section */}
