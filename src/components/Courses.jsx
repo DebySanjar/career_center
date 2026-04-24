@@ -243,7 +243,7 @@ function CourseCard({ course, onEnroll, index }) {
 
 export default function Courses({ onEnroll }) {
   return (
-    <section id="courses" style={{ padding: '30px 24px 16px', position: 'relative', zIndex: 1 }}>
+    <section id="courses" style={{ padding: '15px 24px 16px', position: 'relative', zIndex: 1 }}>
       <style>{`
         @media (max-width: 768px) {
           .courses-section { padding: 40px 16px 24px !important; }

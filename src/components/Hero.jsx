@@ -162,12 +162,13 @@ export default function Hero({ onEnroll, tg }) {
 
             <div style={{
               position: 'absolute', bottom: 30, left: -20, zIndex: 3,
-              background: 'linear-gradient(135deg, #7c3aed, #ec4899)',
+              background: 'linear-gradient(135deg, #45ca78ff, #48ece6ff)',
               borderRadius: 20, padding: '10px 16px',
-              boxShadow: '0 8px 20px rgba(124,58,237,0.4)',
+              boxShadow: '0 8px 20px rgba(72, 250, 49, 0.4)',
               animation: 'float 6s ease-in-out infinite 1s',
-              fontWeight: 900, fontSize: 13, color: '#fff'
-            }}>🎓 500+ O'quvchi</div>
+              fontWeight: 900, fontSize: 13, color: '#fff',
+              marginTop: 12
+            }}>🎓 Siz uchun</div>
           </div>
         </div>
       </div>
