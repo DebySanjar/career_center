@@ -17,7 +17,7 @@ function MapSection() {
   }
 
   return (
-    <div style={{ marginTop: 24 }}>
+    <div style={{ marginTop: 24 }} className="map-section">
       <div style={{ textAlign: 'center', marginBottom: 16 }}>
         <h3 style={{ fontSize: 'clamp(22px, 3vw, 36px)', fontWeight: 900, color: '#1e1b4b', marginBottom: 8 }}>
           Bizni{' '}
@@ -243,7 +243,13 @@ function CourseCard({ course, onEnroll, index }) {
 
 export default function Courses({ onEnroll }) {
   return (
-    <section id="courses" style={{ padding: '80px 24px', position: 'relative', zIndex: 1 }}>
+    <section id="courses" style={{ padding: '60px 24px 40px', position: 'relative', zIndex: 1 }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .courses-section { padding: 40px 16px 24px !important; }
+          .map-section { margin-top: 12px !important; }
+        }
+      `}</style>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
         <div style={{ textAlign: 'center', marginBottom: 60 }}>
