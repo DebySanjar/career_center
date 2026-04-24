@@ -92,7 +92,7 @@ export default function Quotes() {
   }, [])
 
   return (
-    <section style={{ padding: '60px 0', position: 'relative', zIndex: 1, overflow: 'hidden' }}>
+    <section style={{ padding: '24px 0 40px', position: 'relative', zIndex: 1, overflow: 'hidden' }}>
       <div style={{ textAlign: 'center', marginBottom: 32, padding: '0 24px' }}>
         <h2 style={{
           fontSize: 'clamp(24px, 4vw, 40px)', fontWeight: 900, color: '#1e1b4b',
