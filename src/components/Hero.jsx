@@ -49,7 +49,7 @@ export default function Hero({ onEnroll, tg }) {
             {/* Buttons - always side by side */}
             <div style={{ display: 'flex', flexDirection: 'row', gap: 14, flexWrap: 'nowrap' }}>
               <button onClick={onEnroll} style={{
-                background: 'linear-gradient(135deg, #abe811ff, #e7d50eff)',
+                background: 'linear-gradient(135deg, #d6a80fff, #f3df0bff)',
                 color: '#fff', border: 'none', padding: '15px 28px',
                 borderRadius: 10, fontSize: 15, fontWeight: 800, cursor: 'pointer',
                 boxShadow: '0 8px 30px rgba(10,22,40,0.35)',
@@ -154,8 +154,8 @@ export default function Hero({ onEnroll, tg }) {
             {/* Only badges float */}
             <div style={{
               position: 'absolute', top: 20, right: -10, zIndex: 3,
-              background: '#fbbf24', borderRadius: 20, padding: '10px 16px',
-              boxShadow: '0 8px 20px rgba(251,191,36,0.4)',
+              background: '#45ca78ff', borderRadius: 20, padding: '10px 16px',
+              boxShadow: '0 8px 20px rgba(85, 182, 44, 0.88)',
               animation: 'float2 4s ease-in-out infinite',
               fontWeight: 900, fontSize: 13, color: '#fff'
             }}>⭐ 5.0 Reyting</div>

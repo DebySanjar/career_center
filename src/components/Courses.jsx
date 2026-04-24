@@ -255,7 +255,7 @@ export default function Courses({ onEnroll }) {
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'linear-gradient(135deg, #d98f3aff, #dc8420ff)',
+            background: 'linear-gradient(135deg, #e7d429ff, #ee9f44ff)',
             borderRadius: 50, padding: '10px 24px', marginBottom: 16,
             boxShadow: '0 4px 15px rgba(239, 140, 26, 0.35)',
             cursor: 'default'
